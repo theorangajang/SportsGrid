@@ -14,6 +14,18 @@
 		191B455F2B63595B006D80DF /* SportsGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191B455E2B63595B006D80DF /* SportsGridTests.swift */; };
 		191B45692B63595B006D80DF /* SportsGridUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191B45682B63595B006D80DF /* SportsGridUITests.swift */; };
 		191B456B2B63595B006D80DF /* SportsGridUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191B456A2B63595B006D80DF /* SportsGridUITestsLaunchTests.swift */; };
+		19A4F1842B6C23A100B61406 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F1832B6C23A100B61406 /* PlayerCell.swift */; };
+		19A4F1872B6C2AA200B61406 /* Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F1862B6C2AA200B61406 /* Padding.swift */; };
+		19E73CFB2B69B587006FA1F3 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E73CFA2B69B587006FA1F3 /* APIConstants.swift */; };
+		19E73CFD2B69B59D006FA1F3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E73CFC2B69B59D006FA1F3 /* NetworkError.swift */; };
+		19E73D002B69B5DE006FA1F3 /* SeasonRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E73CFF2B69B5DE006FA1F3 /* SeasonRouter.swift */; };
+		19E73D022B69B5F3006FA1F3 /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E73D012B69B5F3006FA1F3 /* Season.swift */; };
+		19E73D052B69B60F006FA1F3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E73D042B69B60F006FA1F3 /* Player.swift */; };
+		19E73D092B69BDBD006FA1F3 /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E73D082B69BDBD006FA1F3 /* APIHandler.swift */; };
+		19E73D0B2B69BDDA006FA1F3 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E73D0A2B69BDDA006FA1F3 /* HTTPMethod.swift */; };
+		19E73D0D2B69BDF0006FA1F3 /* RouteProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E73D0C2B69BDF0006FA1F3 /* RouteProvider.swift */; };
+		19E73D0F2B69C060006FA1F3 /* HTTPContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E73D0E2B69C060006FA1F3 /* HTTPContentType.swift */; };
+		19E73D112B6A150C006FA1F3 /* SeasonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E73D102B6A150C006FA1F3 /* SeasonAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +56,18 @@
 		191B45642B63595B006D80DF /* SportsGridUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportsGridUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		191B45682B63595B006D80DF /* SportsGridUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsGridUITests.swift; sourceTree = "<group>"; };
 		191B456A2B63595B006D80DF /* SportsGridUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsGridUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		19A4F1832B6C23A100B61406 /* PlayerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
+		19A4F1862B6C2AA200B61406 /* Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Padding.swift; sourceTree = "<group>"; };
+		19E73CFA2B69B587006FA1F3 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		19E73CFC2B69B59D006FA1F3 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		19E73CFF2B69B5DE006FA1F3 /* SeasonRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonRouter.swift; sourceTree = "<group>"; };
+		19E73D012B69B5F3006FA1F3 /* Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Season.swift; sourceTree = "<group>"; };
+		19E73D042B69B60F006FA1F3 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		19E73D082B69BDBD006FA1F3 /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
+		19E73D0A2B69BDDA006FA1F3 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		19E73D0C2B69BDF0006FA1F3 /* RouteProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteProvider.swift; sourceTree = "<group>"; };
+		19E73D0E2B69C060006FA1F3 /* HTTPContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPContentType.swift; sourceTree = "<group>"; };
+		19E73D102B6A150C006FA1F3 /* SeasonAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +118,10 @@
 		191B454C2B635959006D80DF /* SportsGrid */ = {
 			isa = PBXGroup;
 			children = (
+				19A4F1852B6C2A9A00B61406 /* Utils */,
+				19E73D032B69B600006FA1F3 /* Player */,
+				19E73CFE2B69B5D3006FA1F3 /* Season */,
+				19E73CF92B69B57B006FA1F3 /* Network */,
 				191B454D2B635959006D80DF /* SportsGridApp.swift */,
 				191B454F2B635959006D80DF /* ContentView.swift */,
 				191B45512B63595B006D80DF /* Assets.xcassets */,
@@ -125,6 +153,54 @@
 				191B456A2B63595B006D80DF /* SportsGridUITestsLaunchTests.swift */,
 			);
 			path = SportsGridUITests;
+			sourceTree = "<group>";
+		};
+		19A4F1802B6C237000B61406 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				19A4F1832B6C23A100B61406 /* PlayerCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		19A4F1852B6C2A9A00B61406 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				19A4F1862B6C2AA200B61406 /* Padding.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		19E73CF92B69B57B006FA1F3 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				19E73CFA2B69B587006FA1F3 /* APIConstants.swift */,
+				19E73CFC2B69B59D006FA1F3 /* NetworkError.swift */,
+				19E73D082B69BDBD006FA1F3 /* APIHandler.swift */,
+				19E73D0A2B69BDDA006FA1F3 /* HTTPMethod.swift */,
+				19E73D0C2B69BDF0006FA1F3 /* RouteProvider.swift */,
+				19E73D0E2B69C060006FA1F3 /* HTTPContentType.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		19E73CFE2B69B5D3006FA1F3 /* Season */ = {
+			isa = PBXGroup;
+			children = (
+				19E73CFF2B69B5DE006FA1F3 /* SeasonRouter.swift */,
+				19E73D012B69B5F3006FA1F3 /* Season.swift */,
+				19E73D102B6A150C006FA1F3 /* SeasonAPI.swift */,
+			);
+			path = Season;
+			sourceTree = "<group>";
+		};
+		19E73D032B69B600006FA1F3 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				19A4F1802B6C237000B61406 /* View */,
+				19E73D042B69B60F006FA1F3 /* Player.swift */,
+			);
+			path = Player;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +333,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19E73CFB2B69B587006FA1F3 /* APIConstants.swift in Sources */,
+				19E73D112B6A150C006FA1F3 /* SeasonAPI.swift in Sources */,
 				191B45502B635959006D80DF /* ContentView.swift in Sources */,
 				191B454E2B635959006D80DF /* SportsGridApp.swift in Sources */,
+				19E73D0B2B69BDDA006FA1F3 /* HTTPMethod.swift in Sources */,
+				19E73D052B69B60F006FA1F3 /* Player.swift in Sources */,
+				19E73CFD2B69B59D006FA1F3 /* NetworkError.swift in Sources */,
+				19E73D0F2B69C060006FA1F3 /* HTTPContentType.swift in Sources */,
+				19E73D0D2B69BDF0006FA1F3 /* RouteProvider.swift in Sources */,
+				19A4F1872B6C2AA200B61406 /* Padding.swift in Sources */,
+				19E73D092B69BDBD006FA1F3 /* APIHandler.swift in Sources */,
+				19E73D022B69B5F3006FA1F3 /* Season.swift in Sources */,
+				19E73D002B69B5DE006FA1F3 /* SeasonRouter.swift in Sources */,
+				19A4F1842B6C23A100B61406 /* PlayerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
