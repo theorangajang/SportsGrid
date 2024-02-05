@@ -9,7 +9,7 @@ import Foundation
 
 struct Season: Hashable {
     
-    let count: Int
+    let totalPlayers: Int
     let next: String
     let players: [Player]
     
@@ -17,7 +17,7 @@ struct Season: Hashable {
 
 struct SeasonResponse: Decodable {
     
-    let count: Int
+    let totalPlayers: Int
     let next: String
     let players: [PlayerResponse]
     
@@ -31,7 +31,7 @@ struct SeasonResponse: Decodable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.count = try container.decode(Int.self, forKey: .count)
+        self.totalPlayers = try container.decode(Int.self, forKey: .count)
         self.next = try container.decode(String.self, forKey: .next)
         self.players = try container.decode([PlayerResponse].self, forKey: .players)
     }
@@ -51,7 +51,11 @@ extension SeasonResponse {
                 assists: $0.assists
             )
         }
-        return Season(count: self.count, next: self.next, players: mappedPlayers)
+        return Season(
+            totalPlayers: self.totalPlayers,
+            next: self.next, 
+            players: mappedPlayers
+        )
     }
     
 }

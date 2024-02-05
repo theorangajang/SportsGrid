@@ -25,8 +25,12 @@ struct ContentView: View {
         GeometryReader { proxy in
             ScrollView {
                 LazyVGrid(columns: self.gridItemLayout) {
-                    ForEach(self.viewModel.dataState.players, id: \.id) { element in
-                        PlayerCell()
+                    let players = Array(zip(self.viewModel.dataState.players.indices, self.viewModel.dataState.players))
+                    ForEach(players, id: \.1) { index, player in
+                        PlayerCell(player: player)
+                            .onAppear {
+                                self.viewModel.getMoreSeasons(index: index)
+                            }
                     }
                 }
                 .padding(.horizontal, Padding.regular)
@@ -41,10 +45,10 @@ struct ContentView: View {
 
 final class ContentViewModel: ObservableObject {
     
-    private let itemsFromEndThreshold = 30
+    private let itemsFromEndThreshold = 15
     
-    private let totalItemsAvailable: Int?
-    private let itemsLoadedCount: Int?
+    private var totalItemsAvailable: Int?
+    private var itemsLoadedCount: Int?
     
     struct ViewState {
         
@@ -68,20 +72,37 @@ final class ContentViewModel: ObservableObject {
     init(year: Int, repo: SeasonRepository = SeasonRepositoryImpl()) {
         self.repo = repo
         self.year = year
-        self.totalItemsAvailable = 0
-        self.itemsLoadedCount = 0
-        getInitialSeason()
+        getSeason()
     }
     
-    func getInitialSeason() {
+    func getMoreSeasons(index: Int) {
+        guard let itemsLoadedCount, let totalItemsAvailable else { return }
+        
+        if reachedThreshold(itemsLoaded: itemsLoadedCount, index: index)
+            && moreItemsRemaining(itemsLoaded: itemsLoadedCount, totalItemsAvailable: totalItemsAvailable) {
+            self.viewState.page += 1
+            getSeason()
+        }
+    }
+    
+    func reachedThreshold(itemsLoaded: Int, index: Int) -> Bool {
+        return itemsLoaded - index == self.itemsFromEndThreshold
+    }
+    
+    func moreItemsRemaining(itemsLoaded: Int, totalItemsAvailable: Int) -> Bool {
+        return itemsLoaded < totalItemsAvailable
+    }
+    
+    func getSeason() {
         self.viewState.dataIsLoading = true
-        getSeason(page: self.viewState.page)
-    }
-    
-    func getSeason(page: Int) {
         Task {
-            let season = try await self.repo.getSeason(year: self.year, page: page)
-            self.dataState.players = season.players
+            let season = try await self.repo.getSeason(year: self.year, page: self.viewState.page)
+            self.totalItemsAvailable = season.totalPlayers
+            await MainActor.run {
+                self.dataState.players.append(contentsOf: season.players)
+                self.itemsLoadedCount = self.dataState.players.count
+                self.viewState.dataIsLoading = false
+            }
         }
     }
     

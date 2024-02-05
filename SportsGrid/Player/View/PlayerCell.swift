@@ -7,7 +7,13 @@
 
 import SwiftUI
 
-struct PlayerCell: View {
+struct PlayerCell: View, Equatable {
+    
+    private let player: Player
+    
+    init(player: Player) {
+        self.player = player
+    }
     
     var body: some View {
         VStack(spacing: .zero) {
@@ -19,30 +25,26 @@ struct PlayerCell: View {
                     .padding(.vertical, Padding.regular)
             }
             HStack {
-                Text("Player Name")
+                Text(self.player.name)
             }
             VStack(spacing: 10) {
                 HStack {
-                    Text("Points")
+                    Text("Total Points")
                     Spacer()
-                    Text("10.5 ppg")
+                    Text("\(self.player.points)")
                 }
                 HStack {
-                    Text("Assists")
+                    Text("Total Assists")
                     Spacer()
-                    Text("5 ppg")
+                    Text("\(self.player.assists)")
                 }
                 HStack {
-                    Text("Rebounds")
+                    Text("Total Rebounds")
                     Spacer()
-                    Text("5 ppg")
+                    Text("\(self.player.totalRebs)")
                 }
             }
         }
     }
     
-}
-
-#Preview {
-    PlayerCell()
 }
