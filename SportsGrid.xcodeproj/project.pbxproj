@@ -19,6 +19,10 @@
 		19A4F1892B72CBED00B61406 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F1882B72CBED00B61406 /* RequestBuilder.swift */; };
 		19A4F18B2B72CE7800B61406 /* PlayerSeasonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F18A2B72CE7800B61406 /* PlayerSeasonViewModel.swift */; };
 		19A4F18D2B72CE9B00B61406 /* PlayerSeasonGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F18C2B72CE9B00B61406 /* PlayerSeasonGrid.swift */; };
+		19A4F1922B72D01700B61406 /* SeasonRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F1912B72D01700B61406 /* SeasonRepository.swift */; };
+		19A4F1942B72D03700B61406 /* SeasonResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F1932B72D03700B61406 /* SeasonResponse.swift */; };
+		19A4F1982B72D1B300B61406 /* SeasonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F1972B72D1B300B61406 /* SeasonError.swift */; };
+		19A4F19B2B72D31300B61406 /* PlayerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F19A2B72D31300B61406 /* PlayerResponse.swift */; };
 		19E73CFB2B69B587006FA1F3 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E73CFA2B69B587006FA1F3 /* APIConstants.swift */; };
 		19E73CFD2B69B59D006FA1F3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E73CFC2B69B59D006FA1F3 /* NetworkError.swift */; };
 		19E73D002B69B5DE006FA1F3 /* SeasonRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E73CFF2B69B5DE006FA1F3 /* SeasonRouter.swift */; };
@@ -64,6 +68,10 @@
 		19A4F1882B72CBED00B61406 /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 		19A4F18A2B72CE7800B61406 /* PlayerSeasonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSeasonViewModel.swift; sourceTree = "<group>"; };
 		19A4F18C2B72CE9B00B61406 /* PlayerSeasonGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSeasonGrid.swift; sourceTree = "<group>"; };
+		19A4F1912B72D01700B61406 /* SeasonRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonRepository.swift; sourceTree = "<group>"; };
+		19A4F1932B72D03700B61406 /* SeasonResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonResponse.swift; sourceTree = "<group>"; };
+		19A4F1972B72D1B300B61406 /* SeasonError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonError.swift; sourceTree = "<group>"; };
+		19A4F19A2B72D31300B61406 /* PlayerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerResponse.swift; sourceTree = "<group>"; };
 		19E73CFA2B69B587006FA1F3 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		19E73CFC2B69B59D006FA1F3 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		19E73CFF2B69B5DE006FA1F3 /* SeasonRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonRouter.swift; sourceTree = "<group>"; };
@@ -177,6 +185,51 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		19A4F18F2B72CFEB00B61406 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				19A4F18C2B72CE9B00B61406 /* PlayerSeasonGrid.swift */,
+				19A4F18A2B72CE7800B61406 /* PlayerSeasonViewModel.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		19A4F1902B72D00300B61406 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				19E73CFF2B69B5DE006FA1F3 /* SeasonRouter.swift */,
+				19E73D102B6A150C006FA1F3 /* SeasonAPI.swift */,
+				19A4F1912B72D01700B61406 /* SeasonRepository.swift */,
+				19A4F1932B72D03700B61406 /* SeasonResponse.swift */,
+				19A4F1972B72D1B300B61406 /* SeasonError.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		19A4F1952B72D05200B61406 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				19E73D012B69B5F3006FA1F3 /* Season.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		19A4F1962B72D05900B61406 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				19E73D042B69B60F006FA1F3 /* Player.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		19A4F1992B72D30B00B61406 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				19A4F19A2B72D31300B61406 /* PlayerResponse.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		19E73CF92B69B57B006FA1F3 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,11 +247,9 @@
 		19E73CFE2B69B5D3006FA1F3 /* Season */ = {
 			isa = PBXGroup;
 			children = (
-				19E73CFF2B69B5DE006FA1F3 /* SeasonRouter.swift */,
-				19E73D012B69B5F3006FA1F3 /* Season.swift */,
-				19E73D102B6A150C006FA1F3 /* SeasonAPI.swift */,
-				19A4F18A2B72CE7800B61406 /* PlayerSeasonViewModel.swift */,
-				19A4F18C2B72CE9B00B61406 /* PlayerSeasonGrid.swift */,
+				19A4F1952B72D05200B61406 /* Domain */,
+				19A4F1902B72D00300B61406 /* API */,
+				19A4F18F2B72CFEB00B61406 /* View */,
 			);
 			path = Season;
 			sourceTree = "<group>";
@@ -206,8 +257,9 @@
 		19E73D032B69B600006FA1F3 /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				19A4F1992B72D30B00B61406 /* API */,
+				19A4F1962B72D05900B61406 /* Domain */,
 				19A4F1802B6C237000B61406 /* View */,
-				19E73D042B69B60F006FA1F3 /* Player.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -345,6 +397,7 @@
 				19A4F18D2B72CE9B00B61406 /* PlayerSeasonGrid.swift in Sources */,
 				19A4F1892B72CBED00B61406 /* RequestBuilder.swift in Sources */,
 				19E73CFB2B69B587006FA1F3 /* APIConstants.swift in Sources */,
+				19A4F1982B72D1B300B61406 /* SeasonError.swift in Sources */,
 				19E73D112B6A150C006FA1F3 /* SeasonAPI.swift in Sources */,
 				191B45502B635959006D80DF /* ContentView.swift in Sources */,
 				191B454E2B635959006D80DF /* SportsGridApp.swift in Sources */,
@@ -352,10 +405,13 @@
 				19E73D052B69B60F006FA1F3 /* Player.swift in Sources */,
 				19E73CFD2B69B59D006FA1F3 /* NetworkError.swift in Sources */,
 				19E73D0F2B69C060006FA1F3 /* HTTPContentType.swift in Sources */,
+				19A4F1922B72D01700B61406 /* SeasonRepository.swift in Sources */,
+				19A4F19B2B72D31300B61406 /* PlayerResponse.swift in Sources */,
 				19E73D0D2B69BDF0006FA1F3 /* RouteProvider.swift in Sources */,
 				19A4F1872B6C2AA200B61406 /* Padding.swift in Sources */,
 				19A4F18B2B72CE7800B61406 /* PlayerSeasonViewModel.swift in Sources */,
 				19E73D092B69BDBD006FA1F3 /* APIHandler.swift in Sources */,
+				19A4F1942B72D03700B61406 /* SeasonResponse.swift in Sources */,
 				19E73D022B69B5F3006FA1F3 /* Season.swift in Sources */,
 				19E73D002B69B5DE006FA1F3 /* SeasonRouter.swift in Sources */,
 				19A4F1842B6C23A100B61406 /* PlayerCell.swift in Sources */,

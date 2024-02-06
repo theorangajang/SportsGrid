@@ -26,7 +26,10 @@ struct PlayerCell: View, Equatable {
             }
             HStack {
                 Text(self.player.name)
+                Text("Team Image")
             }
+            .frame(maxWidth: .infinity)
+            .padding(.bottom, Padding.small)
             VStack(spacing: 10) {
                 HStack {
                     Text("Total Points")
@@ -47,4 +50,17 @@ struct PlayerCell: View, Equatable {
         }
     }
     
+}
+
+#Preview {
+    PlayerCell(
+        player: Player(
+            id: 1,
+            name: "Tarik Black",
+            team: "Hou",
+            points: 10,
+            totalRebs: 10,
+            assists: 10
+        )
+    )
 }
