@@ -17,6 +17,8 @@
 		19A4F1842B6C23A100B61406 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F1832B6C23A100B61406 /* PlayerCell.swift */; };
 		19A4F1872B6C2AA200B61406 /* Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F1862B6C2AA200B61406 /* Padding.swift */; };
 		19A4F1892B72CBED00B61406 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F1882B72CBED00B61406 /* RequestBuilder.swift */; };
+		19A4F18B2B72CE7800B61406 /* PlayerSeasonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F18A2B72CE7800B61406 /* PlayerSeasonViewModel.swift */; };
+		19A4F18D2B72CE9B00B61406 /* PlayerSeasonGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F18C2B72CE9B00B61406 /* PlayerSeasonGrid.swift */; };
 		19E73CFB2B69B587006FA1F3 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E73CFA2B69B587006FA1F3 /* APIConstants.swift */; };
 		19E73CFD2B69B59D006FA1F3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E73CFC2B69B59D006FA1F3 /* NetworkError.swift */; };
 		19E73D002B69B5DE006FA1F3 /* SeasonRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E73CFF2B69B5DE006FA1F3 /* SeasonRouter.swift */; };
@@ -60,6 +62,8 @@
 		19A4F1832B6C23A100B61406 /* PlayerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
 		19A4F1862B6C2AA200B61406 /* Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Padding.swift; sourceTree = "<group>"; };
 		19A4F1882B72CBED00B61406 /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
+		19A4F18A2B72CE7800B61406 /* PlayerSeasonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSeasonViewModel.swift; sourceTree = "<group>"; };
+		19A4F18C2B72CE9B00B61406 /* PlayerSeasonGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSeasonGrid.swift; sourceTree = "<group>"; };
 		19E73CFA2B69B587006FA1F3 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		19E73CFC2B69B59D006FA1F3 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		19E73CFF2B69B5DE006FA1F3 /* SeasonRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonRouter.swift; sourceTree = "<group>"; };
@@ -193,6 +197,8 @@
 				19E73CFF2B69B5DE006FA1F3 /* SeasonRouter.swift */,
 				19E73D012B69B5F3006FA1F3 /* Season.swift */,
 				19E73D102B6A150C006FA1F3 /* SeasonAPI.swift */,
+				19A4F18A2B72CE7800B61406 /* PlayerSeasonViewModel.swift */,
+				19A4F18C2B72CE9B00B61406 /* PlayerSeasonGrid.swift */,
 			);
 			path = Season;
 			sourceTree = "<group>";
@@ -336,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19A4F18D2B72CE9B00B61406 /* PlayerSeasonGrid.swift in Sources */,
 				19A4F1892B72CBED00B61406 /* RequestBuilder.swift in Sources */,
 				19E73CFB2B69B587006FA1F3 /* APIConstants.swift in Sources */,
 				19E73D112B6A150C006FA1F3 /* SeasonAPI.swift in Sources */,
@@ -347,6 +354,7 @@
 				19E73D0F2B69C060006FA1F3 /* HTTPContentType.swift in Sources */,
 				19E73D0D2B69BDF0006FA1F3 /* RouteProvider.swift in Sources */,
 				19A4F1872B6C2AA200B61406 /* Padding.swift in Sources */,
+				19A4F18B2B72CE7800B61406 /* PlayerSeasonViewModel.swift in Sources */,
 				19E73D092B69BDBD006FA1F3 /* APIHandler.swift in Sources */,
 				19E73D022B69B5F3006FA1F3 /* Season.swift in Sources */,
 				19E73D002B69B5DE006FA1F3 /* SeasonRouter.swift in Sources */,

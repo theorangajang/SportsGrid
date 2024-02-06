@@ -11,7 +11,7 @@ import SwiftUI
 struct SportsGridApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(year: 2014)
+            ContentView()
         }
     }
 }
