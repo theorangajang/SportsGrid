@@ -5,11 +5,12 @@
 //  Created by Alex Jang on 1/30/24.
 //
 
+import Combine
 import Foundation
 
 protocol APIHandler {
     
-    func perform<T: Decodable>(model: T.Type, from route: RouteProvider) async throws -> T
+    func perform<T: Decodable>(model: T.Type, from route: RouteProvider) -> AnyPublisher<T, Error>
     
 }
 
@@ -17,20 +18,33 @@ final class APIManager: APIHandler {
     
     private let session: URLSession
     private let decoder: JSONDecoder
+    private let requestBuilder: RequestBuilder
     
-    init(session: URLSession = URLSession.shared, decoder: JSONDecoder = .init()) {
+    init(session: URLSession = URLSession.shared, decoder: JSONDecoder = .init(), requestBuilder: RequestBuilder = RequestBuilder()) {
         self.session = session
         self.decoder = decoder
+        self.requestBuilder = requestBuilder
     }
     
-    func perform<T: Decodable>(model: T.Type, from route: RouteProvider) async throws -> T {
-        let (data, response) = try await self.session.data(for: buildRequest(from: route))
-        do {
-            try handleResponse(data: data, response: response)
-            return try self.decoder.decode(T.self, from: data)
-        } catch {
-            throw NetworkError.dataConversionFailure
+    func perform<T: Decodable>(model: T.Type, from route: RouteProvider) -> AnyPublisher<T, Error> {
+        guard let request = try? buildRequest(from: route) else {
+            return Fail(error: NetworkError.invalidURL).eraseToAnyPublisher()
         }
+        return self.session.dataTaskPublisher(for: request)
+            .tryMap { [weak self] (data, response) -> Data in
+                guard let strongSelf = self else { throw NetworkError.dataConversionFailure }
+                try strongSelf.handleResponse(data: data, response: response)
+                return data
+            }
+            .flatMap { [weak self] data -> AnyPublisher<T, Error> in
+                guard let strongSelf = self, let response = try? strongSelf.decoder.decode(T.self, from: data) else {
+                    return Fail(error: NetworkError.invalidResponse).eraseToAnyPublisher()
+                }
+                return Just(response)
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
     }
     
     private func handleResponse(data: Data, response: URLResponse) throws {
@@ -44,31 +58,9 @@ final class APIManager: APIHandler {
     }
     
     private func buildRequest(from route: RouteProvider) throws -> URLRequest {
-        let component = try buildUrlComponent(from: route)
-        
-        guard let url = component.url else { throw NetworkError.invalidURL }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = route.method.rawValue
-        if !route.headers.isEmpty {
-            request.allHTTPHeaderFields = route.headers
-        }
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        return request
-    }
-    
-    private func buildUrlComponent(from route: RouteProvider) throws -> URLComponents {
-        var components = URLComponents()
-        components.scheme = APIConstants.scheme
-        components.host = APIConstants.host
-        components.path = APIConstants.basePath + route.path
-        
-        if case .get(let params) = route.method, !params.isEmpty {
-            components.queryItems = params.map { URLQueryItem(name: $0, value: $1) }
-        }
-        
-        return components
+        try self.requestBuilder
+            .addUrlComponents(from: route)
+            .build(from: route)
     }
     
 }

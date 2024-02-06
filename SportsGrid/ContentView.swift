@@ -22,19 +22,17 @@ struct ContentView: View {
     }
     
     var body: some View {
-        GeometryReader { proxy in
-            ScrollView {
-                LazyVGrid(columns: self.gridItemLayout) {
-                    let players = Array(zip(self.viewModel.dataState.players.indices, self.viewModel.dataState.players))
-                    ForEach(players, id: \.1) { index, player in
-                        PlayerCell(player: player)
-                            .onAppear {
-                                self.viewModel.getMoreSeasons(index: index)
-                            }
-                    }
+        ScrollView {
+            LazyVGrid(columns: self.gridItemLayout) {
+                let players = Array(zip(self.viewModel.dataState.players.indices, self.viewModel.dataState.players))
+                ForEach(players, id: \.1) { index, player in
+                    PlayerCell(player: player)
+                        .onAppear {
+                            self.viewModel.getMoreSeasons(index: index)
+                        }
                 }
-                .padding(.horizontal, Padding.regular)
             }
+            .padding(.horizontal, Padding.regular)
         }
     }
 }
@@ -42,6 +40,8 @@ struct ContentView: View {
 #Preview {
     ContentView(year: 2015)
 }
+
+import Combine
 
 final class ContentViewModel: ObservableObject {
     
@@ -69,6 +69,8 @@ final class ContentViewModel: ObservableObject {
     private let repo: SeasonRepository
     private let year: Int
     
+    private var cancellables = Set<AnyCancellable>()
+    
     init(year: Int, repo: SeasonRepository = SeasonRepositoryImpl()) {
         self.repo = repo
         self.year = year
@@ -95,15 +97,21 @@ final class ContentViewModel: ObservableObject {
     
     func getSeason() {
         self.viewState.dataIsLoading = true
-        Task {
-            let season = try await self.repo.getSeason(year: self.year, page: self.viewState.page)
-            self.totalItemsAvailable = season.totalPlayers
-            await MainActor.run {
-                self.dataState.players.append(contentsOf: season.players)
-                self.itemsLoadedCount = self.dataState.players.count
-                self.viewState.dataIsLoading = false
-            }
-        }
+        self.repo.getSeason(year: self.year, page: self.viewState.page)
+            .receive(on: DispatchQueue.main)
+            .sink(
+                receiveCompletion: { [weak self] completion in
+                    guard let strongSelf = self else { return }
+                    strongSelf.viewState.dataIsLoading = false
+                },
+                receiveValue: { [weak self] season in
+                    guard let strongSelf = self else { return }
+                    strongSelf.totalItemsAvailable = season.totalPlayers
+                    strongSelf.dataState.players.append(contentsOf: season.players)
+                    strongSelf.itemsLoadedCount = strongSelf.dataState.players.count
+                }
+            )
+            .store(in: &self.cancellables)
     }
     
 }

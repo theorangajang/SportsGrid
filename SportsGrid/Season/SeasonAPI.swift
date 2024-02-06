@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import Combine
 
 enum SeasonError: Error {
     
     case networkError
+    case customError(message: String)
     
 }
 
@@ -21,24 +23,21 @@ struct SeasonAPI {
         self.apiManager = apiManager
     }
     
-    func getSeason(year: Int, page: Int) async throws -> SeasonResponse {
-        do {
-            let route = SeasonRouter.seasonStats(season: year, page: page)
-            return try await self.apiManager.perform(model: SeasonResponse.self, from: route)
-        } catch let error {
-            if case NetworkError.requestFailed(let code) = error {
-                throw SeasonError.networkError
-            } else {
-                throw SeasonError.networkError
+    func getSeason(year: Int, page: Int) -> AnyPublisher<SeasonResponse, SeasonError> {
+        let route = SeasonRouter.seasonStats(season: year, page: page)
+        return self.apiManager.perform(model: SeasonResponse.self, from: route)
+            .mapError { error -> SeasonError in
+                guard case NetworkError.requestFailed = error else { return SeasonError.networkError }
+                return SeasonError.customError(message: "Failed to retrieve season data")
             }
-        }
+            .eraseToAnyPublisher()
     }
     
 }
 
 protocol SeasonRepository {
     
-    func getSeason(year: Int, page: Int) async throws -> Season
+    func getSeason(year: Int, page: Int) -> AnyPublisher<Season, SeasonError>
     
 }
 
@@ -52,9 +51,10 @@ final class SeasonRepositoryImpl: SeasonRepository {
         self.api = api
     }
     
-    func getSeason(year: Int, page: Int) async throws -> Season {
-        let season = try await self.api.getSeason(year: year, page: page)
-        return season.map()
+    func getSeason(year: Int, page: Int) -> AnyPublisher<Season, SeasonError> {
+        return self.api.getSeason(year: year, page: page)
+            .map { $0.map() }
+            .eraseToAnyPublisher()
     }
     
 }
