@@ -10,42 +10,12 @@
 		191B454E2B635959006D80DF /* SportsGridApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191B454D2B635959006D80DF /* SportsGridApp.swift */; };
 		191B45522B63595B006D80DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 191B45512B63595B006D80DF /* Assets.xcassets */; };
 		191B45552B63595B006D80DF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 191B45542B63595B006D80DF /* Preview Assets.xcassets */; };
-		19A4F1842B6C23A100B61406 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F1832B6C23A100B61406 /* PlayerCell.swift */; };
-		19A4F1872B6C2AA200B61406 /* Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F1862B6C2AA200B61406 /* Padding.swift */; };
-		19A4F18B2B72CE7800B61406 /* PlayerSeasonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F18A2B72CE7800B61406 /* PlayerSeasonViewModel.swift */; };
-		19A4F18D2B72CE9B00B61406 /* PlayerSeasonGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F18C2B72CE9B00B61406 /* PlayerSeasonGrid.swift */; };
-		19A4F1922B72D01700B61406 /* SeasonRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F1912B72D01700B61406 /* SeasonRepository.swift */; };
-		19A4F1942B72D03700B61406 /* SeasonResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F1932B72D03700B61406 /* SeasonResponse.swift */; };
-		19A4F1982B72D1B300B61406 /* SeasonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F1972B72D1B300B61406 /* SeasonError.swift */; };
-		19A4F19B2B72D31300B61406 /* PlayerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4F19A2B72D31300B61406 /* PlayerResponse.swift */; };
-		19D7E88C2B7C1F2000799814 /* MatchUpAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E88B2B7C1F2000799814 /* MatchUpAPI.swift */; };
-		19D7E88F2B7C23C600799814 /* GameOddsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E88E2B7C23C600799814 /* GameOddsResponse.swift */; };
-		19D7E8912B7C23DE00799814 /* BookMakerOddsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E8902B7C23DE00799814 /* BookMakerOddsResponse.swift */; };
-		19D7E8942B7C23FC00799814 /* BookMakerOdds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E8932B7C23FC00799814 /* BookMakerOdds.swift */; };
-		19D7E8962B7C241300799814 /* GameOdds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E8952B7C241300799814 /* GameOdds.swift */; };
-		19D7E8982B7C2B7000799814 /* MatchUpRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E8972B7C2B7000799814 /* MatchUpRepository.swift */; };
-		19D7E89A2B7C2F4300799814 /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E8992B7C2F4300799814 /* DateFormat.swift */; };
 		19D7E89D2B7C359500799814 /* DateFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E89C2B7C359500799814 /* DateFormatterTests.swift */; };
-		19D7E89F2B7C4D3500799814 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E89E2B7C4D3500799814 /* String+Extension.swift */; };
-		19D7E8A12B7C51F900799814 /* MatchUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E8A02B7C51F900799814 /* MatchUpRouter.swift */; };
-		19D7E8A42B7C529000799814 /* GameOddsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E8A32B7C529000799814 /* GameOddsRow.swift */; };
-		19D7E8A62B7E9C1200799814 /* BookMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E8A52B7E9C1200799814 /* BookMaker.swift */; };
-		19D7E8A82B7EABF700799814 /* MatchupList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E8A72B7EABF700799814 /* MatchupList.swift */; };
-		19D7E8AA2B7EB00D00799814 /* MatchupListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E8A92B7EB00D00799814 /* MatchupListViewModel.swift */; };
 		19D7E8AC2B7EB30B00799814 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E8AB2B7EB30B00799814 /* MainView.swift */; };
-		19D7E8B12B7EC9B800799814 /* NbaTeamRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E8B02B7EC9B800799814 /* NbaTeamRepository.swift */; };
-		19D7E8B32B7EE0CE00799814 /* TeamRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E8B22B7EE0CE00799814 /* TeamRouter.swift */; };
-		19D7E8B52B7EE0E400799814 /* TeamAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E8B42B7EE0E400799814 /* TeamAPI.swift */; };
-		19D7E8B72B7EE10000799814 /* NbaTeamResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E8B62B7EE10000799814 /* NbaTeamResponse.swift */; };
-		19D7E8B92B7EE12700799814 /* NbaTeamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E8B82B7EE12700799814 /* NbaTeamRequest.swift */; };
-		19D7E8BC2B7EE69200799814 /* NbaTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E8BB2B7EE69200799814 /* NbaTeam.swift */; };
-		19D7E8C02B7EF7C900799814 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 19D7E8BF2B7EF7C900799814 /* NukeUI */; };
-		19D7E8C62B7F0CB700799814 /* GetOddsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E8C52B7F0CB700799814 /* GetOddsUseCase.swift */; };
 		19D7E9742B7F21FD00799814 /* SGBase in Frameworks */ = {isa = PBXBuildFile; productRef = 19D7E9732B7F21FD00799814 /* SGBase */; };
-		19E73D002B69B5DE006FA1F3 /* SeasonRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E73CFF2B69B5DE006FA1F3 /* SeasonRouter.swift */; };
-		19E73D022B69B5F3006FA1F3 /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E73D012B69B5F3006FA1F3 /* Season.swift */; };
-		19E73D052B69B60F006FA1F3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E73D042B69B60F006FA1F3 /* Player.swift */; };
-		19E73D112B6A150C006FA1F3 /* SeasonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E73D102B6A150C006FA1F3 /* SeasonAPI.swift */; };
+		19D7E9772B7F242200799814 /* Team in Frameworks */ = {isa = PBXBuildFile; productRef = 19D7E9762B7F242200799814 /* Team */; };
+		19D7E97C2B7F28B000799814 /* Matchup in Frameworks */ = {isa = PBXBuildFile; productRef = 19D7E97B2B7F28B000799814 /* Matchup */; };
+		19D7E9802B7F30BD00799814 /* Season in Frameworks */ = {isa = PBXBuildFile; productRef = 19D7E97F2B7F30BD00799814 /* Season */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,41 +34,12 @@
 		191B45512B63595B006D80DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		191B45542B63595B006D80DF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		191B455A2B63595B006D80DF /* SportsGridTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportsGridTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		19A4F1832B6C23A100B61406 /* PlayerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
-		19A4F1862B6C2AA200B61406 /* Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Padding.swift; sourceTree = "<group>"; };
-		19A4F18A2B72CE7800B61406 /* PlayerSeasonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSeasonViewModel.swift; sourceTree = "<group>"; };
-		19A4F18C2B72CE9B00B61406 /* PlayerSeasonGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSeasonGrid.swift; sourceTree = "<group>"; };
-		19A4F1912B72D01700B61406 /* SeasonRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonRepository.swift; sourceTree = "<group>"; };
-		19A4F1932B72D03700B61406 /* SeasonResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonResponse.swift; sourceTree = "<group>"; };
-		19A4F1972B72D1B300B61406 /* SeasonError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonError.swift; sourceTree = "<group>"; };
-		19A4F19A2B72D31300B61406 /* PlayerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerResponse.swift; sourceTree = "<group>"; };
-		19D7E88B2B7C1F2000799814 /* MatchUpAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchUpAPI.swift; sourceTree = "<group>"; };
-		19D7E88E2B7C23C600799814 /* GameOddsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOddsResponse.swift; sourceTree = "<group>"; };
-		19D7E8902B7C23DE00799814 /* BookMakerOddsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMakerOddsResponse.swift; sourceTree = "<group>"; };
-		19D7E8932B7C23FC00799814 /* BookMakerOdds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMakerOdds.swift; sourceTree = "<group>"; };
-		19D7E8952B7C241300799814 /* GameOdds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOdds.swift; sourceTree = "<group>"; };
-		19D7E8972B7C2B7000799814 /* MatchUpRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchUpRepository.swift; sourceTree = "<group>"; };
-		19D7E8992B7C2F4300799814 /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
 		19D7E89C2B7C359500799814 /* DateFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterTests.swift; sourceTree = "<group>"; };
-		19D7E89E2B7C4D3500799814 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		19D7E8A02B7C51F900799814 /* MatchUpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchUpRouter.swift; sourceTree = "<group>"; };
-		19D7E8A32B7C529000799814 /* GameOddsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOddsRow.swift; sourceTree = "<group>"; };
-		19D7E8A52B7E9C1200799814 /* BookMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMaker.swift; sourceTree = "<group>"; };
-		19D7E8A72B7EABF700799814 /* MatchupList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchupList.swift; sourceTree = "<group>"; };
-		19D7E8A92B7EB00D00799814 /* MatchupListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchupListViewModel.swift; sourceTree = "<group>"; };
 		19D7E8AB2B7EB30B00799814 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		19D7E8B02B7EC9B800799814 /* NbaTeamRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NbaTeamRepository.swift; sourceTree = "<group>"; };
-		19D7E8B22B7EE0CE00799814 /* TeamRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRouter.swift; sourceTree = "<group>"; };
-		19D7E8B42B7EE0E400799814 /* TeamAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamAPI.swift; sourceTree = "<group>"; };
-		19D7E8B62B7EE10000799814 /* NbaTeamResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NbaTeamResponse.swift; sourceTree = "<group>"; };
-		19D7E8B82B7EE12700799814 /* NbaTeamRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NbaTeamRequest.swift; sourceTree = "<group>"; };
-		19D7E8BB2B7EE69200799814 /* NbaTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NbaTeam.swift; sourceTree = "<group>"; };
-		19D7E8C52B7F0CB700799814 /* GetOddsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOddsUseCase.swift; sourceTree = "<group>"; };
 		19D7E9712B7F21E300799814 /* SGBase */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SGBase; sourceTree = "<group>"; };
-		19E73CFF2B69B5DE006FA1F3 /* SeasonRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonRouter.swift; sourceTree = "<group>"; };
-		19E73D012B69B5F3006FA1F3 /* Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Season.swift; sourceTree = "<group>"; };
-		19E73D042B69B60F006FA1F3 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		19E73D102B6A150C006FA1F3 /* SeasonAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonAPI.swift; sourceTree = "<group>"; };
+		19D7E9752B7F23CD00799814 /* Team */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Team; sourceTree = "<group>"; };
+		19D7E9782B7F258600799814 /* Matchup */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Matchup; sourceTree = "<group>"; };
+		19D7E97E2B7F303500799814 /* Season */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Season; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,8 +47,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19D7E8C02B7EF7C900799814 /* NukeUI in Frameworks */,
+				19D7E97C2B7F28B000799814 /* Matchup in Frameworks */,
+				19D7E9772B7F242200799814 /* Team in Frameworks */,
 				19D7E9742B7F21FD00799814 /* SGBase in Frameworks */,
+				19D7E9802B7F30BD00799814 /* Season in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +67,9 @@
 		191B45412B635959006D80DF = {
 			isa = PBXGroup;
 			children = (
+				19D7E97E2B7F303500799814 /* Season */,
+				19D7E9782B7F258600799814 /* Matchup */,
+				19D7E9752B7F23CD00799814 /* Team */,
 				19D7E9712B7F21E300799814 /* SGBase */,
 				191B454C2B635959006D80DF /* SportsGrid */,
 				191B455D2B63595B006D80DF /* SportsGridTests */,
@@ -144,11 +90,6 @@
 		191B454C2B635959006D80DF /* SportsGrid */ = {
 			isa = PBXGroup;
 			children = (
-				19D7E8AF2B7EC8EA00799814 /* Team */,
-				19D7E88A2B7C1F0E00799814 /* Matchup */,
-				19A4F1852B6C2A9A00B61406 /* Utils */,
-				19E73D032B69B600006FA1F3 /* Player */,
-				19E73CFE2B69B5D3006FA1F3 /* Season */,
 				191B454D2B635959006D80DF /* SportsGridApp.swift */,
 				191B45512B63595B006D80DF /* Assets.xcassets */,
 				191B45532B63595B006D80DF /* Preview Content */,
@@ -173,102 +114,6 @@
 			path = SportsGridTests;
 			sourceTree = "<group>";
 		};
-		19A4F1802B6C237000B61406 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				19A4F1832B6C23A100B61406 /* PlayerCell.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		19A4F1852B6C2A9A00B61406 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				19A4F1862B6C2AA200B61406 /* Padding.swift */,
-				19D7E8992B7C2F4300799814 /* DateFormat.swift */,
-				19D7E89E2B7C4D3500799814 /* String+Extension.swift */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
-		19A4F18F2B72CFEB00B61406 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				19A4F18C2B72CE9B00B61406 /* PlayerSeasonGrid.swift */,
-				19A4F18A2B72CE7800B61406 /* PlayerSeasonViewModel.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		19A4F1902B72D00300B61406 /* API */ = {
-			isa = PBXGroup;
-			children = (
-				19E73CFF2B69B5DE006FA1F3 /* SeasonRouter.swift */,
-				19E73D102B6A150C006FA1F3 /* SeasonAPI.swift */,
-				19A4F1912B72D01700B61406 /* SeasonRepository.swift */,
-				19A4F1932B72D03700B61406 /* SeasonResponse.swift */,
-				19A4F1972B72D1B300B61406 /* SeasonError.swift */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		19A4F1952B72D05200B61406 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				19E73D012B69B5F3006FA1F3 /* Season.swift */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		19A4F1962B72D05900B61406 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				19E73D042B69B60F006FA1F3 /* Player.swift */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		19A4F1992B72D30B00B61406 /* API */ = {
-			isa = PBXGroup;
-			children = (
-				19A4F19A2B72D31300B61406 /* PlayerResponse.swift */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		19D7E88A2B7C1F0E00799814 /* Matchup */ = {
-			isa = PBXGroup;
-			children = (
-				19D7E8A22B7C523900799814 /* View */,
-				19D7E8922B7C23F200799814 /* Domain */,
-				19D7E88D2B7C23B800799814 /* API */,
-			);
-			path = Matchup;
-			sourceTree = "<group>";
-		};
-		19D7E88D2B7C23B800799814 /* API */ = {
-			isa = PBXGroup;
-			children = (
-				19D7E88B2B7C1F2000799814 /* MatchUpAPI.swift */,
-				19D7E88E2B7C23C600799814 /* GameOddsResponse.swift */,
-				19D7E8902B7C23DE00799814 /* BookMakerOddsResponse.swift */,
-				19D7E8972B7C2B7000799814 /* MatchUpRepository.swift */,
-				19D7E8A02B7C51F900799814 /* MatchUpRouter.swift */,
-				19D7E8C52B7F0CB700799814 /* GetOddsUseCase.swift */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		19D7E8922B7C23F200799814 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				19D7E8932B7C23FC00799814 /* BookMakerOdds.swift */,
-				19D7E8952B7C241300799814 /* GameOdds.swift */,
-				19D7E8A52B7E9C1200799814 /* BookMaker.swift */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
 		19D7E89B2B7C358A00799814 /* UtilTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,70 +122,11 @@
 			path = UtilTests;
 			sourceTree = "<group>";
 		};
-		19D7E8A22B7C523900799814 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				19D7E8A32B7C529000799814 /* GameOddsRow.swift */,
-				19D7E8A72B7EABF700799814 /* MatchupList.swift */,
-				19D7E8A92B7EB00D00799814 /* MatchupListViewModel.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		19D7E8AF2B7EC8EA00799814 /* Team */ = {
-			isa = PBXGroup;
-			children = (
-				19D7E8BD2B7EE6A400799814 /* API */,
-				19D7E8BA2B7EE68A00799814 /* Domain */,
-			);
-			path = Team;
-			sourceTree = "<group>";
-		};
-		19D7E8BA2B7EE68A00799814 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				19D7E8BB2B7EE69200799814 /* NbaTeam.swift */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		19D7E8BD2B7EE6A400799814 /* API */ = {
-			isa = PBXGroup;
-			children = (
-				19D7E8B02B7EC9B800799814 /* NbaTeamRepository.swift */,
-				19D7E8B22B7EE0CE00799814 /* TeamRouter.swift */,
-				19D7E8B42B7EE0E400799814 /* TeamAPI.swift */,
-				19D7E8B62B7EE10000799814 /* NbaTeamResponse.swift */,
-				19D7E8B82B7EE12700799814 /* NbaTeamRequest.swift */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
 		19D7E9722B7F21FD00799814 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		19E73CFE2B69B5D3006FA1F3 /* Season */ = {
-			isa = PBXGroup;
-			children = (
-				19A4F1952B72D05200B61406 /* Domain */,
-				19A4F1902B72D00300B61406 /* API */,
-				19A4F18F2B72CFEB00B61406 /* View */,
-			);
-			path = Season;
-			sourceTree = "<group>";
-		};
-		19E73D032B69B600006FA1F3 /* Player */ = {
-			isa = PBXGroup;
-			children = (
-				19A4F1992B72D30B00B61406 /* API */,
-				19A4F1962B72D05900B61406 /* Domain */,
-				19A4F1802B6C237000B61406 /* View */,
-			);
-			path = Player;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,8 +146,10 @@
 			);
 			name = SportsGrid;
 			packageProductDependencies = (
-				19D7E8BF2B7EF7C900799814 /* NukeUI */,
 				19D7E9732B7F21FD00799814 /* SGBase */,
+				19D7E9762B7F242200799814 /* Team */,
+				19D7E97B2B7F28B000799814 /* Matchup */,
+				19D7E97F2B7F30BD00799814 /* Season */,
 			);
 			productName = SportsGrid;
 			productReference = 191B454A2B635959006D80DF /* SportsGrid.app */;
@@ -414,7 +202,6 @@
 			);
 			mainGroup = 191B45412B635959006D80DF;
 			packageReferences = (
-				19D7E8BE2B7EF7C900799814 /* XCRemoteSwiftPackageReference "Nuke" */,
 			);
 			productRefGroup = 191B454B2B635959006D80DF /* Products */;
 			projectDirPath = "";
@@ -450,40 +237,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19D7E8982B7C2B7000799814 /* MatchUpRepository.swift in Sources */,
-				19A4F18D2B72CE9B00B61406 /* PlayerSeasonGrid.swift in Sources */,
-				19D7E8962B7C241300799814 /* GameOdds.swift in Sources */,
-				19A4F1982B72D1B300B61406 /* SeasonError.swift in Sources */,
-				19E73D112B6A150C006FA1F3 /* SeasonAPI.swift in Sources */,
-				19D7E8A12B7C51F900799814 /* MatchUpRouter.swift in Sources */,
 				191B454E2B635959006D80DF /* SportsGridApp.swift in Sources */,
-				19D7E8B92B7EE12700799814 /* NbaTeamRequest.swift in Sources */,
-				19D7E8B12B7EC9B800799814 /* NbaTeamRepository.swift in Sources */,
-				19D7E8AA2B7EB00D00799814 /* MatchupListViewModel.swift in Sources */,
-				19D7E89F2B7C4D3500799814 /* String+Extension.swift in Sources */,
 				19D7E8AC2B7EB30B00799814 /* MainView.swift in Sources */,
-				19D7E8C62B7F0CB700799814 /* GetOddsUseCase.swift in Sources */,
-				19D7E8912B7C23DE00799814 /* BookMakerOddsResponse.swift in Sources */,
-				19D7E8B52B7EE0E400799814 /* TeamAPI.swift in Sources */,
-				19E73D052B69B60F006FA1F3 /* Player.swift in Sources */,
-				19D7E8B72B7EE10000799814 /* NbaTeamResponse.swift in Sources */,
-				19D7E8B32B7EE0CE00799814 /* TeamRouter.swift in Sources */,
-				19D7E8A82B7EABF700799814 /* MatchupList.swift in Sources */,
-				19D7E8942B7C23FC00799814 /* BookMakerOdds.swift in Sources */,
-				19A4F1922B72D01700B61406 /* SeasonRepository.swift in Sources */,
-				19D7E8BC2B7EE69200799814 /* NbaTeam.swift in Sources */,
-				19A4F19B2B72D31300B61406 /* PlayerResponse.swift in Sources */,
-				19D7E88F2B7C23C600799814 /* GameOddsResponse.swift in Sources */,
-				19A4F1872B6C2AA200B61406 /* Padding.swift in Sources */,
-				19A4F18B2B72CE7800B61406 /* PlayerSeasonViewModel.swift in Sources */,
-				19A4F1942B72D03700B61406 /* SeasonResponse.swift in Sources */,
-				19D7E8A42B7C529000799814 /* GameOddsRow.swift in Sources */,
-				19E73D022B69B5F3006FA1F3 /* Season.swift in Sources */,
-				19D7E88C2B7C1F2000799814 /* MatchUpAPI.swift in Sources */,
-				19E73D002B69B5DE006FA1F3 /* SeasonRouter.swift in Sources */,
-				19A4F1842B6C23A100B61406 /* PlayerCell.swift in Sources */,
-				19D7E89A2B7C2F4300799814 /* DateFormat.swift in Sources */,
-				19D7E8A62B7E9C1200799814 /* BookMaker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -755,26 +510,22 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		19D7E8BE2B7EF7C900799814 /* XCRemoteSwiftPackageReference "Nuke" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kean/Nuke?tab=readme-ov-file";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 12.4.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		19D7E8BF2B7EF7C900799814 /* NukeUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 19D7E8BE2B7EF7C900799814 /* XCRemoteSwiftPackageReference "Nuke" */;
-			productName = NukeUI;
-		};
 		19D7E9732B7F21FD00799814 /* SGBase */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SGBase;
+		};
+		19D7E9762B7F242200799814 /* Team */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Team;
+		};
+		19D7E97B2B7F28B000799814 /* Matchup */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Matchup;
+		};
+		19D7E97F2B7F30BD00799814 /* Season */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Season;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

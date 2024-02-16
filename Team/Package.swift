@@ -4,16 +4,17 @@
 import PackageDescription
 
 let package = Package(
-    name: "SGBase",
+    name: "Team",
     platforms: [.iOS(.v17)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(name: "SGBase", targets: ["SGBase"]),
+        .library(name: "Team", targets: ["Team"]),
     ],
+    dependencies: [.package(path: "../SGBase")],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
-        .target(name: "SGBase"),
-        .testTarget(name: "SGBaseTests", dependencies: ["SGBase"]),
+        .target(name: "Team", dependencies: ["SGBase"]),
+        .testTarget(name: "TeamTests", dependencies: ["Team", "SGBase"]),
     ]
 )
