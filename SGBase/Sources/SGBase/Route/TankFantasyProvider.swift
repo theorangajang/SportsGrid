@@ -7,9 +7,9 @@
 
 import Foundation
 
-protocol TankFantasyProvider: RouteProvider {}
+public protocol TankFantasyProvider: RouteProvider {}
 
-extension TankFantasyProvider {
+public extension TankFantasyProvider {
     
     var host: String {
         "tank01-fantasy-stats.p.rapidapi.com"

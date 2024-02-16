@@ -7,9 +7,13 @@
 
 import Foundation
 
-final class RequestBuilder {
+public final class RequestBuilder {
     
     private var request: URLRequest?
+    
+    public init(request: URLRequest? = nil) {
+        self.request = request
+    }
     
     func addUrlComponents(from route: RouteProvider) throws -> Self {
         var components = URLComponents()

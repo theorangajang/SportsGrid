@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol RouteProvider {
+public protocol RouteProvider {
     
     var scheme: String { get }
     var host: String { get }
@@ -18,7 +18,7 @@ protocol RouteProvider {
     
 }
 
-extension RouteProvider {
+public extension RouteProvider {
     
     var scheme: String {
         "https"

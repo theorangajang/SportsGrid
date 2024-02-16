@@ -5,8 +5,9 @@
 //  Created by Alex Jang on 2/15/24.
 //
 
-import Foundation
 import Combine
+import Foundation
+import SGBase
 
 struct GetOddsUseCase {
     

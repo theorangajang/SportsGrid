@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum HTTPMethod {
+public enum HTTPMethod {
     
     case get(params: [String: String] = [:])
     case post(HTTPContentType)

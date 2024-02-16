@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum HTTPContentType {
+public enum HTTPContentType {
     
     case json(Encodable?)
     case urlEncoded(EncodableDictionary)
@@ -21,7 +21,7 @@ enum HTTPContentType {
     
 }
 
-protocol EncodableDictionary {
+public protocol EncodableDictionary {
     
     var asUrlEncodedString: String? { get }
     var asUrlEncodedData: Data? { get }
@@ -30,7 +30,7 @@ protocol EncodableDictionary {
 
 extension Dictionary: EncodableDictionary {
     
-    var asUrlEncodedString: String? {
+    public var asUrlEncodedString: String? {
         var pairs = [String]()
         for (key, value) in self {
             pairs.append("\(key)=\(value)")
@@ -40,7 +40,7 @@ extension Dictionary: EncodableDictionary {
             .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
     }
     
-    var asUrlEncodedData: Data? {
+    public var asUrlEncodedData: Data? {
         return asUrlEncodedString?.data(using: .utf8)
     }
     

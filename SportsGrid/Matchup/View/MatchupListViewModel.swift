@@ -5,8 +5,8 @@
 //  Created by Alex Jang on 2/15/24.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 final class MatchupListViewModel: ObservableObject {
     
@@ -28,18 +28,18 @@ final class MatchupListViewModel: ObservableObject {
     }
     
     private func fetchGames() {
-        self.getOddsUseCase.execute(date: .now)
-            .receive(on: DispatchQueue.main)
-            .sink(
-                receiveCompletion: { completion in
-                    
-                },
-                receiveValue: { [weak self] gameOdds in
-                    guard let strongSelf = self else { return }
-                    strongSelf.state.gameOdds = gameOdds
-                }
-            )
-            .store(in: &self.cancellables)
+//        self.getOddsUseCase.execute(date: .now)
+//            .receive(on: DispatchQueue.main)
+//            .sink(
+//                receiveCompletion: { completion in
+//                    
+//                },
+//                receiveValue: { [weak self] gameOdds in
+//                    guard let strongSelf = self else { return }
+//                    strongSelf.state.gameOdds = gameOdds
+//                }
+//            )
+//            .store(in: &self.cancellables)
     }
     
 }

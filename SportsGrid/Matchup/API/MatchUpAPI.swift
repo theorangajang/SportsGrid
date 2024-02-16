@@ -5,8 +5,8 @@
 //  Created by Alex Jang on 2/13/24.
 //
 
-import Foundation
 import Combine
+import SGBase
 
 final class MatchUpAPI {
     

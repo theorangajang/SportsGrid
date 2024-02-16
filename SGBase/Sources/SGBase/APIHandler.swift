@@ -8,19 +8,19 @@
 import Combine
 import Foundation
 
-protocol APIHandler {
+public protocol APIHandler {
     
     func perform<T: Decodable>(model: T.Type, from route: RouteProvider) -> AnyPublisher<T, Error>
     
 }
 
-final class APIManager: APIHandler {
+public final class APIManager: APIHandler {
     
     private let session: URLSession
     private let decoder: JSONDecoder
     private let requestBuilder: RequestBuilder
     
-    init(
+    public init(
         session: URLSession = URLSession.shared,
         decoder: JSONDecoder = .init(),
         requestBuilder: RequestBuilder = RequestBuilder()
@@ -30,7 +30,7 @@ final class APIManager: APIHandler {
         self.requestBuilder = requestBuilder
     }
     
-    func perform<T: Decodable>(model: T.Type, from route: RouteProvider) -> AnyPublisher<T, Error> {
+    public func perform<T: Decodable>(model: T.Type, from route: RouteProvider) -> AnyPublisher<T, Error> {
         guard let request = try? buildRequest(from: route) else {
             return Fail(error: NetworkError.invalidURL).eraseToAnyPublisher()
         }

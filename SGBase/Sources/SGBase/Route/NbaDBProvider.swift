@@ -7,9 +7,9 @@
 
 import Foundation
 
-protocol NbaDBProvider: RouteProvider {}
+public protocol NbaDBProvider: RouteProvider {}
 
-extension NbaDBProvider {
+public extension NbaDBProvider {
     
     var host: String {
         "nba-stats-db.herokuapp.com"

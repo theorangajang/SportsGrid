@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SGBase
 
 enum SeasonRouter: NbaDBProvider {
     
