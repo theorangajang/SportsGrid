@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "nuke?tab=readme-ov-file",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kean/Nuke?tab=readme-ov-file",
+      "state" : {
+        "revision" : "8ecbfc886da39bccb01c34abef5f2ff4073ad633",
+        "version" : "12.4.0"
+      }
+    }
+  ],
+  "version" : 2
+}

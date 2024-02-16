@@ -13,9 +13,9 @@ final class RequestBuilder {
     
     func addUrlComponents(from route: RouteProvider) throws -> Self {
         var components = URLComponents()
-        components.scheme = APIConstants.scheme
-        components.host = APIConstants.host
-        components.path = APIConstants.basePath + route.path
+        components.scheme = route.scheme
+        components.host = route.host
+        components.path = route.basePath + route.path
         
         if case .get(let params) = route.method, !params.isEmpty {
             components.queryItems = params.map { URLQueryItem(name: $0, value: $1) }

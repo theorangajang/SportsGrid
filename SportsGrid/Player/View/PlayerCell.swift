@@ -26,6 +26,7 @@ struct PlayerCell: View, Equatable {
             }
             HStack {
                 Text(self.player.name)
+                    .font(.subheadline)
                 Text("Team Image")
             }
             .frame(maxWidth: .infinity)
@@ -47,7 +48,11 @@ struct PlayerCell: View, Equatable {
                     Text("\(self.player.totalRebs)")
                 }
             }
+            .font(.subheadline)
+            .padding(.bottom, Padding.small)
         }
+        .background(Color.gray)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
     
 }

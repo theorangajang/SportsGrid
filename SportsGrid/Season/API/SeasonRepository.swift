@@ -20,7 +20,7 @@ final class SeasonRepositoryImpl: SeasonRepository {
     
     private let api: SeasonAPI
     
-    init(api: SeasonAPI = .init()) {
+    init(api: SeasonAPI = SeasonAPI.default) {
         self.api = api
     }
     

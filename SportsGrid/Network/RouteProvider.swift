@@ -9,6 +9,9 @@ import Foundation
 
 protocol RouteProvider {
     
+    var scheme: String { get }
+    var host: String { get }
+    var basePath: String { get }
     var path: String { get }
     var method: HTTPMethod { get }
     var headers: [String : String] { get }
@@ -16,6 +19,10 @@ protocol RouteProvider {
 }
 
 extension RouteProvider {
+    
+    var scheme: String {
+        "https"
+    }
     
     var headers: [String: String] {
         [:]

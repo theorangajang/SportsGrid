@@ -7,14 +7,14 @@
 
 import Foundation
 
-enum SeasonRouter: RouteProvider {
+enum SeasonRouter: NbaDBProvider {
     
     case seasonStats(season: Int, page: Int)
     
     var path: String {
         switch self {
         case .seasonStats(let season, _):
-            return "/season/\(season)"
+            return "season/\(season)"
         }
     }
     
