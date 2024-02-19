@@ -31,7 +31,6 @@ struct GameOddsRow: View, Equatable {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-//            .frame(height: 100)
         }
     }
     
