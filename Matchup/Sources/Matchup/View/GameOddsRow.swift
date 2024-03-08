@@ -20,57 +20,70 @@ struct GameOddsRow: View, Equatable {
         self.oddsItem = oddsItem
     }
     
+    static func == (lhs: GameOddsRow, rhs: GameOddsRow) -> Bool {
+        lhs.oddsItem == rhs.oddsItem
+    }
+    
+    @State private var isExpanded: Bool = false
+    
     var body: some View {
-        VStack {
-            HStack(spacing: Padding.small) {
+        CollapsableContent(
+            isExpanded: self.$isExpanded,
+            collapseContent: {
                 self.teamNames
+            },
+            expandedContent: {
                 ScrollView(.horizontal) {
                     LazyHStack(spacing: Padding.xSmall) {
                         self.odds
+                            .frame(maxWidth: .infinity)
+                            .background(.green)
                     }
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-        }
+        )
     }
     
     @MainActor
     private var teamNames: some View {
-        VStack(alignment: .leading) {
+        HStack {
             teamContent(name: self.oddsItem.awayTeam.nameAbv, link: self.oddsItem.awayTeam.espnPngLogo)
             teamContent(name: self.oddsItem.homeTeam.nameAbv, link: self.oddsItem.homeTeam.espnPngLogo)
         }
         .padding(.horizontal, Padding.small)
+        .frame(maxWidth: .infinity)
         .background(.orange)
     }
     
     private var odds: some View {
         ForEach(Self.books, id: \.self) { book in
             if let bookMakerOdds = self.oddsItem.bookMakerOdds[book] {
-                VStack(alignment: .leading ,spacing: Padding.small) {
-                    oddsContent(
-                        spread: bookMakerOdds.awayTeamSpread,
-                        spreadOdds: bookMakerOdds.awayTeamSpreadOdds,
-                        total: bookMakerOdds.totalOver,
-                        totalOdds: bookMakerOdds.totalOverOdds,
-                        moneylineOdds: bookMakerOdds.awayTeamMLOdds
-                    )
-                    oddsContent(
-                        spread: bookMakerOdds.homeTeamSpread,
-                        spreadOdds: bookMakerOdds.homeTeamSpreadOdds,
-                        total: bookMakerOdds.totalUnder,
-                        totalOdds: bookMakerOdds.totalUnderOdds,
-                        moneylineOdds: bookMakerOdds.homeTeamMLOdds
-                    )
-                }
-                .background(.green)
-                .frame(width: 150)
-                .background(.red)
+                oddsContent(for: bookMakerOdds)
             }
         }
     }
     
-    private func oddsContent(
+    private func oddsContent(for odds: BookMakerOdds) -> some View {
+        VStack(alignment: .leading ,spacing: Padding.small) {
+            oddsRow(
+                spread: odds.awayTeamSpread,
+                spreadOdds: odds.awayTeamSpreadOdds,
+                total: odds.totalOver,
+                totalOdds: odds.totalOverOdds,
+                moneylineOdds: odds.awayTeamMLOdds
+            )
+            oddsRow(
+                spread: odds.homeTeamSpread,
+                spreadOdds: odds.homeTeamSpreadOdds,
+                total: odds.totalUnder,
+                totalOdds: odds.totalUnderOdds,
+                moneylineOdds: odds.homeTeamMLOdds
+            )
+        }
+        .frame(width: 150)
+    }
+    
+    private func oddsRow(
         spread: String,
         spreadOdds: String,
         total: String,
@@ -117,7 +130,7 @@ struct GameOddsRow: View, Equatable {
             Text(name ?? "")
                 .frame(alignment: .leading)
         }
-        .frame(maxWidth: 90, maxHeight: .infinity, alignment: .leading)
+        .frame(maxWidth: 90, maxHeight: .infinity, alignment: .center)
         .background(.purple)
     }
     

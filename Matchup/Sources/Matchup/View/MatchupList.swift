@@ -17,10 +17,8 @@ public struct MatchupList: View {
     
     public var body: some View {
         ScrollView {
-            LazyVStack {
-                ForEach(self.viewModel.state.gameOdds, id: \.self) { games in
-                    GameOddsRow(oddsItem: games)
-                }
+            ForEach(self.viewModel.state.gameOdds, id: \.self) { games in
+                GameOddsRow(oddsItem: games)
             }
         }
     }

@@ -17,10 +17,12 @@ struct MainView: View {
                 .tabItem {
                     Label("Matchups", systemImage: "list.bullet")
                 }
+                .tag("matchup")
             PlayerSeasonGrid()
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                 }
+                .tag("search")
         }
     }
     
