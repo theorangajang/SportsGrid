@@ -12,7 +12,8 @@ import SwiftUI
 struct GameOddsRow: View, Equatable {
     
     private static let books: [BookMaker] = BookMaker.allCases
-    private static let logoSize: CGSize = CGSize(width: 50, height: 50)
+    private static let teamLogoSize: CGSize = CGSize(width: 50, height: 50)
+    private static let bookLogoSize: CGSize = CGSize(width: 40, height: 40)
     
     private let oddsItem: GameOdds
     
@@ -42,8 +43,8 @@ struct GameOddsRow: View, Equatable {
                     
             },
             expandedContent: {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack(spacing: Padding.xSmall) {
+                ScrollView(.vertical, showsIndicators: false) {
+                    LazyVStack(spacing: Padding.xSmall) {
                         self.odds
                             .frame(maxWidth: .infinity)
                             .background(.green)
@@ -72,13 +73,14 @@ struct GameOddsRow: View, Equatable {
     private var odds: some View {
         ForEach(Self.books, id: \.self) { book in
             if let bookMakerOdds = self.oddsItem.bookMakerOdds[book] {
-                oddsContent(for: bookMakerOdds)
+                oddsContent(for: bookMakerOdds, book: book)
+                    .padding(.vertical, Padding.small)
             }
         }
     }
     
-    private func oddsContent(for odds: BookMakerOdds) -> some View {
-        VStack(alignment: .leading, spacing: Padding.small) {
+    private func oddsContent(for odds: BookMakerOdds, book: BookMaker) -> some View {
+        HStack(spacing: Padding.small) {
             oddsRow(
                 spread: odds.awayTeamSpread,
                 spreadOdds: odds.awayTeamSpreadOdds,
@@ -86,6 +88,9 @@ struct GameOddsRow: View, Equatable {
                 totalOdds: odds.totalOverOdds,
                 moneylineOdds: odds.awayTeamMLOdds
             )
+            Image(book.assetName)
+                .resizable()
+                .frame(width: Self.bookLogoSize.width, height: Self.bookLogoSize.height)
             oddsRow(
                 spread: odds.homeTeamSpread,
                 spreadOdds: odds.homeTeamSpreadOdds,
@@ -103,7 +108,7 @@ struct GameOddsRow: View, Equatable {
         totalOdds: String,
         moneylineOdds: String
     ) -> some View {
-        HStack {
+        VStack(spacing: Padding.xSmall) {
             HStack(spacing: Padding.xSmall) {
                 Text(spread)
                 Text("(\(spreadOdds))")
@@ -152,8 +157,8 @@ struct GameOddsRow: View, Equatable {
             }
         }
         .frame(
-            width: Self.logoSize.width,
-            height: Self.logoSize.height,
+            width: Self.teamLogoSize.width,
+            height: Self.teamLogoSize.height,
             alignment: .center
         )
     }

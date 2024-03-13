@@ -17,4 +17,23 @@ enum BookMaker: CaseIterable, Hashable {
     case caesars
     case draftKings
     
+    var assetName: String {
+        return switch self {
+        case .mgm:
+            "mgm"
+        case .bet365:
+            "bet365"
+        case .fanduel:
+            "fanduel"
+        case .pointsBet:
+            "points_bet"
+        case .betRivers:
+            "bet_rivers"
+        case .caesars:
+            "caesars"
+        case .draftKings:
+            "draftkings"
+        }
+    }
+    
 }
