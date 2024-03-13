@@ -10,7 +10,6 @@
 		191B454E2B635959006D80DF /* SportsGridApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191B454D2B635959006D80DF /* SportsGridApp.swift */; };
 		191B45522B63595B006D80DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 191B45512B63595B006D80DF /* Assets.xcassets */; };
 		191B45552B63595B006D80DF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 191B45542B63595B006D80DF /* Preview Assets.xcassets */; };
-		19D7E89D2B7C359500799814 /* DateFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E89C2B7C359500799814 /* DateFormatterTests.swift */; };
 		19D7E8AC2B7EB30B00799814 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E8AB2B7EB30B00799814 /* MainView.swift */; };
 		19D7E9742B7F21FD00799814 /* SGBase in Frameworks */ = {isa = PBXBuildFile; productRef = 19D7E9732B7F21FD00799814 /* SGBase */; };
 		19D7E9772B7F242200799814 /* Team in Frameworks */ = {isa = PBXBuildFile; productRef = 19D7E9762B7F242200799814 /* Team */; };
@@ -34,12 +33,13 @@
 		191B45512B63595B006D80DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		191B45542B63595B006D80DF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		191B455A2B63595B006D80DF /* SportsGridTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportsGridTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		19D7E89C2B7C359500799814 /* DateFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterTests.swift; sourceTree = "<group>"; };
 		19D7E8AB2B7EB30B00799814 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		19D7E9712B7F21E300799814 /* SGBase */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SGBase; sourceTree = "<group>"; };
 		19D7E9752B7F23CD00799814 /* Team */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Team; sourceTree = "<group>"; };
 		19D7E9782B7F258600799814 /* Matchup */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Matchup; sourceTree = "<group>"; };
 		19D7E97E2B7F303500799814 /* Season */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Season; sourceTree = "<group>"; };
+		C7584CA02BA14B35005D7B2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C79E0C702B9B958C00EE8F46 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +67,7 @@
 		191B45412B635959006D80DF = {
 			isa = PBXGroup;
 			children = (
+				C79E0C702B9B958C00EE8F46 /* Config.xcconfig */,
 				19D7E97E2B7F303500799814 /* Season */,
 				19D7E9782B7F258600799814 /* Matchup */,
 				19D7E9752B7F23CD00799814 /* Team */,
@@ -90,6 +91,7 @@
 		191B454C2B635959006D80DF /* SportsGrid */ = {
 			isa = PBXGroup;
 			children = (
+				C7584CA02BA14B35005D7B2C /* Info.plist */,
 				191B454D2B635959006D80DF /* SportsGridApp.swift */,
 				191B45512B63595B006D80DF /* Assets.xcassets */,
 				191B45532B63595B006D80DF /* Preview Content */,
@@ -117,7 +119,6 @@
 		19D7E89B2B7C358A00799814 /* UtilTests */ = {
 			isa = PBXGroup;
 			children = (
-				19D7E89C2B7C359500799814 /* DateFormatterTests.swift */,
 			);
 			path = UtilTests;
 			sourceTree = "<group>";
@@ -246,7 +247,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19D7E89D2B7C359500799814 /* DateFormatterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +382,7 @@
 		};
 		191B456F2B63595B006D80DF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C79E0C702B9B958C00EE8F46 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -391,6 +392,7 @@
 				DEVELOPMENT_TEAM = 7D8822L32D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SportsGrid/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -411,6 +413,7 @@
 		};
 		191B45702B63595B006D80DF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C79E0C702B9B958C00EE8F46 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -420,6 +423,7 @@
 				DEVELOPMENT_TEAM = 7D8822L32D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SportsGrid/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

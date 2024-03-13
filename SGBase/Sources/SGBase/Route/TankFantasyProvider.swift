@@ -20,9 +20,11 @@ public extension TankFantasyProvider {
     }
     
     var headers: [String: String] {
-        return [
-            "X-RapidAPI-Key": "ab80f351a0mshc5a5cf8581f97e9p1b4bb7jsn082e84789484"
-        ]
+        var header = [String: String]()
+        if let apiKey = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String {
+            header["X-RapidAPI-Key"] = apiKey
+        }
+        return header
     }
     
 }

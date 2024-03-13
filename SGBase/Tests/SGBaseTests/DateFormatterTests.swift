@@ -7,7 +7,7 @@
 
 import XCTest
 
-@testable import SportsGrid
+@testable import SGBase
 
 final class DateFormatterTests: XCTestCase {
     
