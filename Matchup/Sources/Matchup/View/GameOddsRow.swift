@@ -12,7 +12,7 @@ import SwiftUI
 struct GameOddsRow: View, Equatable {
     
     private static let books: [BookMaker] = BookMaker.allCases
-    private static let logoSize: CGSize = CGSize(width: 30, height: 30)
+    private static let logoSize: CGSize = CGSize(width: 50, height: 50)
     
     private let oddsItem: GameOdds
     
@@ -31,26 +31,40 @@ struct GameOddsRow: View, Equatable {
             isExpanded: self.$isExpanded,
             collapseContent: {
                 self.teamNames
+                    .clipShape(
+                        .rect(
+                            topLeadingRadius: 6,
+                            bottomLeadingRadius: self.isExpanded ? .zero : 6,
+                            bottomTrailingRadius: self.isExpanded ? .zero : 6,
+                            topTrailingRadius: 6
+                        )
+                    )
+                    
             },
             expandedContent: {
-                ScrollView(.horizontal) {
+                ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack(spacing: Padding.xSmall) {
                         self.odds
                             .frame(maxWidth: .infinity)
                             .background(.green)
                     }
                 }
+                .clipShape(.rect(bottomLeadingRadius: 6, bottomTrailingRadius: 6))
             }
         )
-    }
+        .padding(.horizontal, Padding.regular)    }
     
     @MainActor
     private var teamNames: some View {
         HStack {
-            teamContent(name: self.oddsItem.awayTeam.nameAbv, link: self.oddsItem.awayTeam.espnPngLogo)
-            teamContent(name: self.oddsItem.homeTeam.nameAbv, link: self.oddsItem.homeTeam.espnPngLogo)
+            awayContent(name: self.oddsItem.awayTeam.nameAbv, link: self.oddsItem.awayTeam.espnPngLogo)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                .background(.purple)
+            homeContent(name: self.oddsItem.homeTeam.nameAbv, link: self.oddsItem.homeTeam.espnPngLogo)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
+                .background(.purple)
         }
-        .padding(.horizontal, Padding.small)
+        .frame(height: 75)
         .frame(maxWidth: .infinity)
         .background(.orange)
     }
@@ -64,23 +78,22 @@ struct GameOddsRow: View, Equatable {
     }
     
     private func oddsContent(for odds: BookMakerOdds) -> some View {
-        VStack(alignment: .leading ,spacing: Padding.small) {
+        VStack(alignment: .leading, spacing: Padding.small) {
             oddsRow(
                 spread: odds.awayTeamSpread,
                 spreadOdds: odds.awayTeamSpreadOdds,
-                total: odds.totalOver,
+                total: "o\(odds.totalOver)",
                 totalOdds: odds.totalOverOdds,
                 moneylineOdds: odds.awayTeamMLOdds
             )
             oddsRow(
                 spread: odds.homeTeamSpread,
                 spreadOdds: odds.homeTeamSpreadOdds,
-                total: odds.totalUnder,
+                total: "u\(odds.totalUnder)",
                 totalOdds: odds.totalUnderOdds,
                 moneylineOdds: odds.homeTeamMLOdds
             )
         }
-        .frame(width: 150)
     }
     
     private func oddsRow(
@@ -91,47 +104,58 @@ struct GameOddsRow: View, Equatable {
         moneylineOdds: String
     ) -> some View {
         HStack {
-            VStack(spacing: Padding.xSmall) {
+            HStack(spacing: Padding.xSmall) {
                 Text(spread)
-                Text(spreadOdds)
+                Text("(\(spreadOdds))")
             }
-            .frame(maxWidth: .infinity, alignment: .center)
-            VStack(spacing: Padding.xSmall) {
+            HStack(spacing: Padding.xSmall) {
                 Text(total)
-                Text(totalOdds)
+                Text("(\(totalOdds))")
             }
-            .frame(maxWidth: .infinity, alignment: .center)
             Text(moneylineOdds)
-                .frame(maxWidth: .infinity, alignment: .center)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(maxWidth: .infinity)
         .background(.blue)
     }
     
     @MainActor
-    private func teamContent(name: String?, link: String?) -> some View {
-        HStack(spacing: Padding.xSmall) {
+    private func homeContent(name: String?, link: String?) -> some View {
+        HStack(spacing: Padding.small) {
+            Text(name ?? "")
+                .frame(alignment: .trailing)
             if let link {
-                LazyImage(url: URL(string: link)) { state in
-                    if let image = state.image {
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                    } else {
-                        Color.gray
-                    }
-                }
-                .frame(
-                    width: Self.logoSize.width,
-                    height: Self.logoSize.height,
-                    alignment: .center
-                )
+                logo(link: link)
+            }
+        }
+    }
+    
+    @MainActor
+    private func awayContent(name: String?, link: String?) -> some View {
+        HStack(spacing: Padding.small) {
+            if let link {
+                logo(link: link)
             }
             Text(name ?? "")
                 .frame(alignment: .leading)
         }
-        .frame(maxWidth: 90, maxHeight: .infinity, alignment: .center)
-        .background(.purple)
+    }
+    
+    @MainActor
+    private func logo(link: String) -> some View {
+        LazyImage(url: URL(string: link)) { state in
+            if let image = state.image {
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            } else {
+                Color.gray
+            }
+        }
+        .frame(
+            width: Self.logoSize.width,
+            height: Self.logoSize.height,
+            alignment: .center
+        )
     }
     
 }
