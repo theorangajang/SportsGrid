@@ -69,11 +69,16 @@ struct NbaTeamResponse: Decodable {
 extension NbaTeamResponse {
     
     func map() throws -> NbaTeam {
-        guard let id else { throw NetworkError.invalidResponse }
+        guard let id,
+              let name,
+              let nameAbv
+        else {
+            throw NetworkError.invalidResponse
+        }
         return NbaTeam(
             id: id,
-            name: self.name,
-            nameAbv: self.nameAbv,
+            name: name,
+            nameAbv: nameAbv,
             win: self.win,
             losses: self.losses,
             avgPoints: self.avgPoints,

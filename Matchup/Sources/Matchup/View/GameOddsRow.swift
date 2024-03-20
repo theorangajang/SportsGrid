@@ -6,14 +6,17 @@
 //
 
 import NukeUI
+import Team
 import SGBase
 import SwiftUI
 
 struct GameOddsRow: View, Equatable {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     private static let books: [BookMaker] = BookMaker.allCases
     private static let teamLogoSize: CGSize = CGSize(width: 50, height: 50)
-    private static let bookLogoSize: CGSize = CGSize(width: 40, height: 40)
+    private static let bookLogoSize: CGSize = CGSize(width: 30, height: 30)
     
     private let oddsItem: GameOdds
     
@@ -32,73 +35,73 @@ struct GameOddsRow: View, Equatable {
             isExpanded: self.$isExpanded,
             collapseContent: {
                 self.teamNames
-                    .clipShape(
-                        .rect(
-                            topLeadingRadius: 6,
-                            bottomLeadingRadius: self.isExpanded ? .zero : 6,
-                            bottomTrailingRadius: self.isExpanded ? .zero : 6,
-                            topTrailingRadius: 6
-                        )
-                    )
-                    
+                    .clipShape(.rect(cornerRadius: 6))
             },
             expandedContent: {
                 ScrollView(.vertical, showsIndicators: false) {
-                    LazyVStack(spacing: Padding.xSmall) {
+                    VStack(spacing: Padding.xSmall) {
                         self.odds
-                            .frame(maxWidth: .infinity)
-                            .background(.green)
+                            .background(Theme.Colors.lightGrey.blur(radius: 30).opacity(0.25))
+                            .clipShape(.rect(cornerRadius: 6))
                     }
+                    .padding(.vertical, Padding.small)
+                    .padding(.horizontal, Padding.medium)
                 }
-                .clipShape(.rect(bottomLeadingRadius: 6, bottomTrailingRadius: 6))
+                .scrollDisabled(true)
+                .background(Theme.Colors.darkGrey)
+                .clipShape(.rect(cornerRadius: 6))
+                .padding(.top, Padding.medium)
             }
         )
-        .padding(.horizontal, Padding.regular)    }
+        .padding(.horizontal, Padding.regular)
+    }
     
     @MainActor
     private var teamNames: some View {
-        HStack {
+        HStack(spacing: .zero) {
             awayContent(name: self.oddsItem.awayTeam.nameAbv, link: self.oddsItem.awayTeam.espnPngLogo)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                .background(.purple)
             homeContent(name: self.oddsItem.homeTeam.nameAbv, link: self.oddsItem.homeTeam.espnPngLogo)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
-                .background(.purple)
         }
         .frame(height: 75)
         .frame(maxWidth: .infinity)
-        .background(.orange)
     }
     
     private var odds: some View {
         ForEach(Self.books, id: \.self) { book in
             if let bookMakerOdds = self.oddsItem.bookMakerOdds[book] {
                 oddsContent(for: bookMakerOdds, book: book)
-                    .padding(.vertical, Padding.small)
             }
         }
     }
     
     private func oddsContent(for odds: BookMakerOdds, book: BookMaker) -> some View {
-        HStack(spacing: Padding.small) {
-            oddsRow(
-                spread: odds.awayTeamSpread,
-                spreadOdds: odds.awayTeamSpreadOdds,
-                total: "o\(odds.totalOver)",
-                totalOdds: odds.totalOverOdds,
-                moneylineOdds: odds.awayTeamMLOdds
-            )
-            Image(book.assetName)
-                .resizable()
-                .frame(width: Self.bookLogoSize.width, height: Self.bookLogoSize.height)
-            oddsRow(
-                spread: odds.homeTeamSpread,
-                spreadOdds: odds.homeTeamSpreadOdds,
-                total: "u\(odds.totalUnder)",
-                totalOdds: odds.totalUnderOdds,
-                moneylineOdds: odds.homeTeamMLOdds
-            )
+        VStack(spacing: Padding.small) {
+            HStack {
+                Image(book.assetName)
+                    .resizable()
+                    .frame(width: Self.bookLogoSize.width, height: Self.bookLogoSize.height)
+                Text(book.name)
+                    .font(.system(size: 16, weight: .medium))
+            }
+            HStack(spacing: .zero) {
+                oddsRow(
+                    spread: odds.awayTeamSpread,
+                    spreadOdds: odds.awayTeamSpreadOdds,
+                    total: "o\(odds.totalOver)",
+                    totalOdds: odds.totalOverOdds,
+                    moneylineOdds: odds.awayTeamMLOdds
+                )
+                Theme.Colors.lightestGrey.frame(width: 1)
+                oddsRow(
+                    spread: odds.homeTeamSpread,
+                    spreadOdds: odds.homeTeamSpreadOdds,
+                    total: "u\(odds.totalUnder)",
+                    totalOdds: odds.totalUnderOdds,
+                    moneylineOdds: odds.homeTeamMLOdds
+                )
+            }
         }
+        .padding(.vertical, Padding.small)
     }
     
     private func oddsRow(
@@ -120,7 +123,6 @@ struct GameOddsRow: View, Equatable {
             Text(moneylineOdds)
         }
         .frame(maxWidth: .infinity)
-        .background(.blue)
     }
     
     @MainActor
@@ -132,6 +134,16 @@ struct GameOddsRow: View, Equatable {
                 logo(link: link)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
+        .background(
+            LinearGradient(
+                gradient: Gradient(
+                    colors: TeamAbbreviations.Nba(rawValue: self.oddsItem.homeTeam.nameAbv)?.colorSchemes ?? []
+                ),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+        )
     }
     
     @MainActor
@@ -143,6 +155,16 @@ struct GameOddsRow: View, Equatable {
             Text(name ?? "")
                 .frame(alignment: .leading)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .background(
+            LinearGradient(
+                gradient: Gradient(
+                    colors: TeamAbbreviations.Nba(rawValue: self.oddsItem.awayTeam.nameAbv)?.colorSchemes ?? []
+                ),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+        )
     }
     
     @MainActor

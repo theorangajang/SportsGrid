@@ -40,13 +40,13 @@ public struct GameOddsResponse: Decodable {
     let awayId: String
     
     // MARK: - Books
-    let mgm: BookMakerOddsResponse
-    let bet365: BookMakerOddsResponse
-    let fanduel: BookMakerOddsResponse
-    let pointsBet: BookMakerOddsResponse
-    let betRivers: BookMakerOddsResponse
-    let caesars: BookMakerOddsResponse
-    let draftKings: BookMakerOddsResponse
+    let mgm: BookMakerOddsResponse?
+    let bet365: BookMakerOddsResponse?
+    let fanduel: BookMakerOddsResponse?
+    let pointsBet: BookMakerOddsResponse?
+    let betRivers: BookMakerOddsResponse?
+    let caesars: BookMakerOddsResponse?
+    let draftKings: BookMakerOddsResponse?
 
     enum CodingKeys: String, CodingKey {
         
@@ -68,17 +68,18 @@ public struct GameOddsResponse: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.lastUpdated = try container.decode(String.self, forKey: .lastUpdated)
-        self.mgm = try container.decode(BookMakerOddsResponse.self, forKey: .mgm)
-        self.bet365 = try container.decode(BookMakerOddsResponse.self, forKey: .bet365)
         self.gameDate = try container.decode(String.self, forKey: .gameDate)
-        self.fanduel = try container.decode(BookMakerOddsResponse.self, forKey: .fanduel)
+        self.gameID = try container.decode(String.self, forKey: .gameID)
         self.homeId = try container.decode(String.self, forKey: .homeId)
         self.awayId = try container.decode(String.self, forKey: .awayId)
-        self.pointsBet = try container.decode(BookMakerOddsResponse.self, forKey: .pointsBet)
-        self.betRivers = try container.decode(BookMakerOddsResponse.self, forKey: .betRivers)
-        self.caesars = try container.decode(BookMakerOddsResponse.self, forKey: .caesars)
-        self.gameID = try container.decode(String.self, forKey: .gameID)
-        self.draftKings = try container.decode(BookMakerOddsResponse.self, forKey: .draftKings)
+        
+        self.mgm = try container.decodeIfPresent(BookMakerOddsResponse.self, forKey: .mgm)
+        self.bet365 = try container.decodeIfPresent(BookMakerOddsResponse.self, forKey: .bet365)
+        self.fanduel = try container.decodeIfPresent(BookMakerOddsResponse.self, forKey: .fanduel)
+        self.pointsBet = try container.decodeIfPresent(BookMakerOddsResponse.self, forKey: .pointsBet)
+        self.betRivers = try container.decodeIfPresent(BookMakerOddsResponse.self, forKey: .betRivers)
+        self.caesars = try container.decodeIfPresent(BookMakerOddsResponse.self, forKey: .caesars)
+        self.draftKings = try container.decodeIfPresent(BookMakerOddsResponse.self, forKey: .draftKings)
     }
     
 }
@@ -94,15 +95,29 @@ extension GameOddsResponse {
             lastUpdatedDate = Date(timeIntervalSince1970: lastUpdated * 1000)
         }
         
-        let bookMakerOdds: [BookMaker: BookMakerOdds] = [
-            .mgm: mgm.map(),
-            .bet365: bet365.map(),
-            .fanduel: fanduel.map(),
-            .pointsBet: pointsBet.map(),
-            .betRivers: betRivers.map(),
-            .caesars: caesars.map(),
-            .draftKings: draftKings.map()
-        ]
+        var bookMakerOdds = [BookMaker: BookMakerOdds]()
+        
+        if let mgm {
+            bookMakerOdds[.mgm] = mgm.map()
+        }
+        if let bet365 {
+            bookMakerOdds[.bet365] = bet365.map()
+        }
+        if let fanduel {
+            bookMakerOdds[.fanduel] = fanduel.map()
+        }
+        if let pointsBet {
+            bookMakerOdds[.pointsBet] = pointsBet.map()
+        }
+        if let betRivers {
+            bookMakerOdds[.betRivers] = betRivers.map()
+        }
+        if let caesars {
+            bookMakerOdds[.caesars] = caesars.map()
+        }
+        if let draftKings {
+            bookMakerOdds[.draftKings] = draftKings.map()
+        }
         
         return GameOdds(
             gameID: self.gameID,

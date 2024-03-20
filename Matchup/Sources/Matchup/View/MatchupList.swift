@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SGBase
 
 public struct MatchupList: View {
     
@@ -21,6 +22,7 @@ public struct MatchupList: View {
                 GameOddsRow(oddsItem: games)
             }
         }
+        .background(Theme.Colors.mainBackground)
     }
     
 }

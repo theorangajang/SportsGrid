@@ -32,7 +32,8 @@ final class MatchupListViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { completion in
-                    
+                    guard case .failure = completion else { return }
+                    // TODO: Present an alert when failure occurs
                 },
                 receiveValue: { [weak self] gameOdds in
                     guard let strongSelf = self else { return }
