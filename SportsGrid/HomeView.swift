@@ -1,5 +1,5 @@
 //
-//  MainView.swift
+//  HomeView.swift
 //  SportsGrid
 //
 //  Created by Alex Jang on 2/15/24.
@@ -10,7 +10,7 @@ import SGBase
 import Matchup
 import Season
 
-struct MainView: View {
+struct HomeView: View {
     
     var body: some View {
         TabView {
@@ -34,5 +34,5 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView()
+    HomeView()
 }

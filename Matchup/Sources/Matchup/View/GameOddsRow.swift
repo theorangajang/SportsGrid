@@ -6,9 +6,9 @@
 //
 
 import NukeUI
-import Team
 import SGBase
 import SwiftUI
+import Team
 
 struct GameOddsRow: View, Equatable {
     

@@ -10,7 +10,7 @@
 		191B454E2B635959006D80DF /* SportsGridApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191B454D2B635959006D80DF /* SportsGridApp.swift */; };
 		191B45522B63595B006D80DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 191B45512B63595B006D80DF /* Assets.xcassets */; };
 		191B45552B63595B006D80DF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 191B45542B63595B006D80DF /* Preview Assets.xcassets */; };
-		19D7E8AC2B7EB30B00799814 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E8AB2B7EB30B00799814 /* MainView.swift */; };
+		19D7E8AC2B7EB30B00799814 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7E8AB2B7EB30B00799814 /* HomeView.swift */; };
 		19D7E9742B7F21FD00799814 /* SGBase in Frameworks */ = {isa = PBXBuildFile; productRef = 19D7E9732B7F21FD00799814 /* SGBase */; };
 		19D7E9772B7F242200799814 /* Team in Frameworks */ = {isa = PBXBuildFile; productRef = 19D7E9762B7F242200799814 /* Team */; };
 		19D7E97C2B7F28B000799814 /* Matchup in Frameworks */ = {isa = PBXBuildFile; productRef = 19D7E97B2B7F28B000799814 /* Matchup */; };
@@ -33,7 +33,7 @@
 		191B45512B63595B006D80DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		191B45542B63595B006D80DF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		191B455A2B63595B006D80DF /* SportsGridTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportsGridTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		19D7E8AB2B7EB30B00799814 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		19D7E8AB2B7EB30B00799814 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		19D7E9712B7F21E300799814 /* SGBase */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SGBase; sourceTree = "<group>"; };
 		19D7E9752B7F23CD00799814 /* Team */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Team; sourceTree = "<group>"; };
 		19D7E9782B7F258600799814 /* Matchup */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Matchup; sourceTree = "<group>"; };
@@ -95,7 +95,7 @@
 				191B454D2B635959006D80DF /* SportsGridApp.swift */,
 				191B45512B63595B006D80DF /* Assets.xcassets */,
 				191B45532B63595B006D80DF /* Preview Content */,
-				19D7E8AB2B7EB30B00799814 /* MainView.swift */,
+				19D7E8AB2B7EB30B00799814 /* HomeView.swift */,
 			);
 			path = SportsGrid;
 			sourceTree = "<group>";
@@ -239,7 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				191B454E2B635959006D80DF /* SportsGridApp.swift in Sources */,
-				19D7E8AC2B7EB30B00799814 /* MainView.swift in Sources */,
+				19D7E8AC2B7EB30B00799814 /* HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
