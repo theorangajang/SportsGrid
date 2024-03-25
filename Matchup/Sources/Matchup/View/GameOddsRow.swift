@@ -9,6 +9,7 @@ import NukeUI
 import SGBase
 import SwiftUI
 import Team
+import ThemeKit
 
 struct GameOddsRow: View, Equatable {
     
@@ -81,7 +82,8 @@ struct GameOddsRow: View, Equatable {
                     .resizable()
                     .frame(width: Self.bookLogoSize.width, height: Self.bookLogoSize.height)
                 Text(book.name)
-                    .font(.system(size: 16, weight: .medium))
+                    .font(CustomFonts.subtitleReg)
+                    .foregroundStyle(.white)
             }
             HStack(spacing: .zero) {
                 oddsRow(
@@ -122,6 +124,8 @@ struct GameOddsRow: View, Equatable {
             }
             Text(moneylineOdds)
         }
+        .foregroundStyle(.white)
+        .font(CustomFonts.bodyReg)
         .frame(maxWidth: .infinity)
     }
     
@@ -129,6 +133,7 @@ struct GameOddsRow: View, Equatable {
     private func homeContent(name: String?, link: String?) -> some View {
         HStack(spacing: Padding.small) {
             Text(name ?? "")
+                .font(CustomFonts.bodyReg)
                 .frame(alignment: .trailing)
             if let link {
                 logo(link: link)
@@ -153,6 +158,7 @@ struct GameOddsRow: View, Equatable {
                 logo(link: link)
             }
             Text(name ?? "")
+                .font(CustomFonts.bodyReg)
                 .frame(alignment: .leading)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)

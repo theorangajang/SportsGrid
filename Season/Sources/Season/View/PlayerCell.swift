@@ -5,8 +5,9 @@
 //  Created by Alex Jang on 2/1/24.
 //
 
-import SwiftUI
 import SGBase
+import SwiftUI
+import ThemeKit
 
 struct PlayerCell: View, Equatable {
     

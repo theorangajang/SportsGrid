@@ -10,7 +10,10 @@ import SwiftUI
 
 public struct CustomFonts {
     
-    public static let bodyFont = Font.custom(FontNames.regular.name, size: 17, relativeTo: .body)
+    public static let bodySmall = Font.custom(FontNames.regular.name, size: 15)
+    public static let bodyReg = Font.custom(FontNames.regular.name, size: 17)
+    public static let subtitleReg = Font.custom(FontNames.semibold.name, size: 17)
+    public static let subtitleLarge = Font.custom(FontNames.semibold.name, size: 19)
     
 }
 

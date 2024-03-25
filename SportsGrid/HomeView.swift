@@ -5,10 +5,11 @@
 //  Created by Alex Jang on 2/15/24.
 //
 
-import SwiftUI
-import SGBase
 import Matchup
+import SGBase
 import Season
+import SwiftUI
+import ThemeKit
 
 struct HomeView: View {
     

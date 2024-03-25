@@ -5,8 +5,9 @@
 //  Created by Alex Jang on 2/15/24.
 //
 
-import SwiftUI
 import SGBase
+import SwiftUI
+import ThemeKit
 
 public struct MatchupList: View {
     
