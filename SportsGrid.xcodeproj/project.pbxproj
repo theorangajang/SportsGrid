@@ -40,6 +40,7 @@
 		19D7E97E2B7F303500799814 /* Season */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Season; sourceTree = "<group>"; };
 		C7584CA02BA14B35005D7B2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C79E0C702B9B958C00EE8F46 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		C7AB0EC82BB0F62E00A02126 /* ThemeKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ThemeKit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +68,7 @@
 		191B45412B635959006D80DF = {
 			isa = PBXGroup;
 			children = (
+				C7AB0EC82BB0F62E00A02126 /* ThemeKit */,
 				C79E0C702B9B958C00EE8F46 /* Config.xcconfig */,
 				19D7E97E2B7F303500799814 /* Season */,
 				19D7E9782B7F258600799814 /* Matchup */,

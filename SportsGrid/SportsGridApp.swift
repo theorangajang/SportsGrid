@@ -6,9 +6,15 @@
 //
 
 import SwiftUI
+import ThemeKit
 
 @main
 struct SportsGridApp: App {
+    
+    init() {
+        Font.registerCustomFonts()
+    }
+    
     var body: some Scene {
         WindowGroup {
             HomeView()

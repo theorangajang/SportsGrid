@@ -12,6 +12,7 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../Team"),
+        .package(path: "../ThemeKit"),
         .package(url: "https://github.com/kean/Nuke.git", from: "12.4.0")
     ],
     targets: [
@@ -19,7 +20,11 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "Matchup",
-            dependencies: ["Team", .product(name: "NukeUI", package: "Nuke")]
+            dependencies: [
+                .byName(name: "Team"),
+                .byName(name: "ThemeKit"),
+                .product(name: "NukeUI", package: "Nuke")
+            ]
         ),
         .testTarget(name: "MatchupTests", dependencies: ["Matchup"]),
     ]
