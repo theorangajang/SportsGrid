@@ -23,7 +23,6 @@ public struct MatchupList: View {
                 GameOddsRow(oddsItem: games)
             }
         }
-        .background(Theme.Colors.mainBackground)
     }
     
 }

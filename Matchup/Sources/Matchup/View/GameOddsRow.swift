@@ -29,14 +29,43 @@ struct GameOddsRow: View, Equatable {
         lhs.oddsItem == rhs.oddsItem
     }
     
-    @State private var isExpanded: Bool = false
+    @State private var isGameSpreadExpanded: Bool = false
+    @State private var isPlayerPropsExpanded: Bool = false
     
     var body: some View {
+        VStack(spacing: .zero) {
+            self.teamContent
+            self.gameSpreadContent
+            self.playerPropsContent
+        }
+        .clipShape(.rect(cornerRadius: 6))
+        .padding(.horizontal, Padding.regular)
+    }
+    
+    @MainActor
+    private var teamContent: some View {
+        HStack(spacing: .zero) {
+            awayContent(name: self.oddsItem.awayTeam.nameAbv, link: self.oddsItem.awayTeam.espnPngLogo)
+            Color.white
+                .frame(width: 1)
+            homeContent(name: self.oddsItem.homeTeam.nameAbv, link: self.oddsItem.homeTeam.espnPngLogo)
+        }
+        .frame(height: 75)
+        .background(Theme.Colors.lightGrey)
+    }
+    
+    private var gameSpreadContent: some View {
         CollapsableContent(
-            isExpanded: self.$isExpanded,
+            isExpanded: self.$isGameSpreadExpanded,
             collapseContent: {
-                self.teamNames
-                    .clipShape(.rect(cornerRadius: 6))
+                self.collapsedContentTitle(for: "Game Spreads")
+                    .background(.green)
+                    .clipShape(
+                        .rect(
+                            bottomLeadingRadius: self.isGameSpreadExpanded ? 6 : .zero,
+                            bottomTrailingRadius: self.isGameSpreadExpanded ? 6 : .zero
+                        )
+                    )
             },
             expandedContent: {
                 ScrollView(.vertical, showsIndicators: false) {
@@ -52,20 +81,58 @@ struct GameOddsRow: View, Equatable {
                 .background(Theme.Colors.darkGrey)
                 .clipShape(.rect(cornerRadius: 6))
                 .padding(.top, Padding.medium)
+                .padding(.bottom, Padding.xxSmall)
             }
         )
-        .padding(.horizontal, Padding.regular)
     }
     
-    @MainActor
-    private var teamNames: some View {
-        HStack(spacing: .zero) {
-            awayContent(name: self.oddsItem.awayTeam.nameAbv, link: self.oddsItem.awayTeam.espnPngLogo)
-            homeContent(name: self.oddsItem.homeTeam.nameAbv, link: self.oddsItem.homeTeam.espnPngLogo)
-        }
-        .frame(height: 75)
-        .frame(maxWidth: .infinity)
+    private var playerPropsContent: some View {
+        CollapsableContent(
+            isExpanded: self.$isPlayerPropsExpanded,
+            collapseContent: {
+                self.collapsedContentTitle(for: "Player Stats")
+                    .background(.orange)
+                    .clipShape(
+                        .rect(
+                            topLeadingRadius: self.isGameSpreadExpanded ? 6 : .zero,
+                            bottomLeadingRadius: 6,
+                            bottomTrailingRadius: 6,
+                            topTrailingRadius: self.isGameSpreadExpanded ? 6 : .zero
+                        )
+                    )
+            },
+            expandedContent: {
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(spacing: Padding.xSmall) {
+                        self.odds
+                            .background(Theme.Colors.lightGrey.blur(radius: 30).opacity(0.25))
+                            .clipShape(.rect(cornerRadius: 6))
+                    }
+                    .padding(.vertical, Padding.small)
+                    .padding(.horizontal, Padding.medium)
+                }
+                .scrollDisabled(true)
+                .background(Theme.Colors.darkGrey)
+                .clipShape(.rect(cornerRadius: 6))
+                .padding(.top, Padding.medium)
+                .padding(.bottom, Padding.xxSmall)
+            }
+        )
     }
+    
+    private func collapsedContentTitle(for title: String) -> some View {
+        Text(title)
+            .font(CustomFonts.subtitleReg)
+            .foregroundStyle(Theme.Colors.creamWhite)
+            .frame(height: 36)
+            .frame(maxWidth: .infinity)
+    }
+    
+}
+
+// MARK: - Odds
+
+extension GameOddsRow {
     
     private var odds: some View {
         ForEach(Self.books, id: \.self) { book in
@@ -83,7 +150,7 @@ struct GameOddsRow: View, Equatable {
                     .frame(width: Self.bookLogoSize.width, height: Self.bookLogoSize.height)
                 Text(book.name)
                     .font(CustomFonts.subtitleReg)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Theme.Colors.creamWhite)
             }
             HStack(spacing: .zero) {
                 oddsRow(
@@ -125,30 +192,28 @@ struct GameOddsRow: View, Equatable {
             Text(moneylineOdds)
         }
         .foregroundStyle(.white)
-        .font(CustomFonts.bodyReg)
+        .font(CustomFonts.bodyLarge)
         .frame(maxWidth: .infinity)
     }
+    
+}
+
+// MARK: - Teams
+
+extension GameOddsRow {
     
     @MainActor
     private func homeContent(name: String?, link: String?) -> some View {
         HStack(spacing: Padding.small) {
             Text(name ?? "")
-                .font(CustomFonts.bodyReg)
+                .font(CustomFonts.titleLarge)
+                .foregroundStyle(Theme.Colors.creamWhite)
                 .frame(alignment: .trailing)
             if let link {
                 logo(link: link)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
-        .background(
-            LinearGradient(
-                gradient: Gradient(
-                    colors: TeamAbbreviations.Nba(rawValue: self.oddsItem.homeTeam.nameAbv)?.colorSchemes ?? []
-                ),
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-        )
     }
     
     @MainActor
@@ -158,19 +223,11 @@ struct GameOddsRow: View, Equatable {
                 logo(link: link)
             }
             Text(name ?? "")
-                .font(CustomFonts.bodyReg)
+                .font(CustomFonts.titleLarge)
+                .foregroundStyle(Theme.Colors.creamWhite)
                 .frame(alignment: .leading)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-        .background(
-            LinearGradient(
-                gradient: Gradient(
-                    colors: TeamAbbreviations.Nba(rawValue: self.oddsItem.awayTeam.nameAbv)?.colorSchemes ?? []
-                ),
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-        )
     }
     
     @MainActor

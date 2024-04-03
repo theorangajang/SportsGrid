@@ -9,6 +9,7 @@ import Foundation
 
 public struct Padding {
     
+    public static let xxSmall: CGFloat = 2.0
     public static let xSmall: CGFloat = 6.0
     public static let small: CGFloat = 8.0
     public static let medium: CGFloat = 10.0

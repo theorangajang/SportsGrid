@@ -16,6 +16,7 @@ public struct Theme {
         public static let darkGrey = Color(red: 60/255, green: 60/255, blue: 60/255)
         public static let lightGrey = Color(red: 159/255, green: 160/255, blue: 161/255)
         public static let lightestGrey = Color(red: 240/255, green: 240/255, blue: 240/255)
+        public static let creamWhite = Color(red: 252/255, green: 251/255, blue: 244/255)
         
     }
     
