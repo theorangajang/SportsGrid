@@ -317,7 +317,7 @@ extension GameOddsRow {
         )
     }
     
-    private func getOtherTopPerformer(for team: NbaTeam, category: PlayerStatCategory) -> Player? {
+    private func getOtherTopPerformer(for team: NbaTeam, category: PlayerStatCategory) -> PlayerBio? {
         let sortedRoster = team.roster.values.sorted {
             switch category {
             case .points:
@@ -336,7 +336,7 @@ extension GameOddsRow {
      - Highlight the row that's for the top performer
      - animate bar slider
      */
-    private func playerStats(for player: Player) -> some View {
+    private func playerStats(for player: PlayerBio) -> some View {
         VStack(spacing: Padding.xSmall) {
             if let points = player.stats?.pts {
                 statContent(title: "Points", stat: points)
