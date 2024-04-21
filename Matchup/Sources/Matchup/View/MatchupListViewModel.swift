@@ -5,7 +5,6 @@
 //  Created by Alex Jang on 2/15/24.
 //
 
-import Combine
 import Foundation
 
 final class MatchupListViewModel: ObservableObject {
@@ -19,7 +18,6 @@ final class MatchupListViewModel: ObservableObject {
     @Published var state: State
     
     private let getOddsUseCase: GetOddsUseCase
-    private var cancellables = Set<AnyCancellable>()
     
     init(getOddsUseCase: GetOddsUseCase = .default) {
         self.state = State()

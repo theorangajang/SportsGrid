@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 
 final class PlayerSeasonViewModel: ObservableObject {
     
@@ -33,8 +32,6 @@ final class PlayerSeasonViewModel: ObservableObject {
     
     private let repo: SeasonRepository
     private let year: Int
-    
-    private var cancellables = Set<AnyCancellable>()
     
     init(year: Int, repo: SeasonRepository = SeasonRepositoryImpl()) {
         self.repo = repo
