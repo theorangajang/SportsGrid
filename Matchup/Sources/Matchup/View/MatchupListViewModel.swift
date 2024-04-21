@@ -24,23 +24,19 @@ final class MatchupListViewModel: ObservableObject {
     init(getOddsUseCase: GetOddsUseCase = .default) {
         self.state = State()
         self.getOddsUseCase = getOddsUseCase
-        fetchGames()
     }
     
-    private func fetchGames() {
-        self.getOddsUseCase.execute(date: .now)
-            .receive(on: DispatchQueue.main)
-            .sink(
-                receiveCompletion: { completion in
-                    guard case .failure = completion else { return }
-                    // TODO: Present an alert when failure occurs
-                },
-                receiveValue: { [weak self] gameOdds in
-                    guard let strongSelf = self else { return }
-                    strongSelf.state.gameOdds = gameOdds
-                }
-            )
-            .store(in: &self.cancellables)
+    func fetchGames() async {
+        do {
+            let gameOdds = try await self.getOddsUseCase.execute(date: .now)
+            Task { @MainActor in
+                self.state.gameOdds = gameOdds
+            }
+        } catch {
+            Task { @MainActor in
+                // TODO: Present an alert when failure occurs
+            }
+        }
     }
     
 }

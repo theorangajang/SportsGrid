@@ -29,8 +29,8 @@ public struct PlayerSeasonGrid: View {
                 let players = Array(zip(self.viewModel.dataState.players.indices, self.viewModel.dataState.players))
                 ForEach(players, id: \.1) { index, player in
                     PlayerCell(player: player)
-                        .onAppear {
-                            self.viewModel.getMoreSeasons(index: index)
+                        .task {
+                            await self.viewModel.getMoreSeasons(index: index)   
                         }
                 }
             }

@@ -18,14 +18,14 @@ final class SeasonAPI {
         self.apiHandler = apiManager
     }
     
-    func getSeason(year: Int, page: Int) -> AnyPublisher<SeasonResponse, SeasonError> {
-        let route = SeasonRouter.seasonStats(season: year, page: page)
-        return self.apiHandler.perform(model: SeasonResponse.self, from: route)
-            .mapError { error -> SeasonError in
-                guard case NetworkError.requestFailed = error else { return SeasonError.networkError }
-                return SeasonError.customError(message: "Failed to retrieve season data")
-            }
-            .eraseToAnyPublisher()
+    func getSeason(year: Int, page: Int) async throws -> SeasonResponse {
+        do {
+            let route = SeasonRouter.seasonStats(season: year, page: page)
+            return try await self.apiHandler.perform(model: SeasonResponse.self, from: route)
+        } catch let error {
+            guard case NetworkError.requestFailed = error else { throw SeasonError.networkError }
+            throw SeasonError.customError(message: "Failed to retrieve season data")
+        }
     }
     
 }

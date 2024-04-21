@@ -23,6 +23,9 @@ public struct MatchupList: View {
                 GameOddsRow(gameOdds: games)
             }
         }
+        .task {
+            await self.viewModel.fetchGames()
+        }
     }
     
 }

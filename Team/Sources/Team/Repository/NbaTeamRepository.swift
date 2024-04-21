@@ -22,7 +22,7 @@ public protocol TeamRepository {
         withTopPerformers: Bool?,
         withTeamStats: Bool?,
         statFilter: StatFilter?
-    ) -> AnyPublisher<[NbaTeam], NetworkError>
+    ) async throws -> [NbaTeam]
     
 }
 
@@ -42,21 +42,22 @@ public struct TeamRepositoryImpl: TeamRepository {
         withTopPerformers: Bool?,
         withTeamStats: Bool?,
         statFilter: StatFilter?
-    ) -> AnyPublisher<[NbaTeam], NetworkError> {
-        self.api.getTeams(
-            withSchedules: withSchedules ?? false,
-            withRosters: withRosters ?? false,
-            withTopPerformers: withTopPerformers ?? false,
-            withTeamStats: withTeamStats ?? false,
-            statFilter: statFilter
-        )
-        .tryMap {
-            try $0.map { team in
+    ) async throws -> [NbaTeam] {
+        do {
+            let response = try await self.api.getTeams(
+                withSchedules: withSchedules ?? false,
+                withRosters: withRosters ?? false,
+                withTopPerformers: withTopPerformers ?? false,
+                withTeamStats: withTeamStats ?? false,
+                statFilter: statFilter
+            )
+            let result = try response.map { team in
                 try team.map()
             }
+            return result
+        } catch {
+            throw NetworkError.requestFailed(statusCode: 400)
         }
-        .mapError { _ in NetworkError.requestFailed(statusCode: 400) }
-        .eraseToAnyPublisher()
     }
     
 }

@@ -25,32 +25,30 @@ public struct GetOddsUseCase {
         self.teamRepo = teamRepo
     }
     
-    public func execute(date: Date) -> AnyPublisher<[GameOdds], NetworkError> {
-        self.matchUpRepo.getOdds(date: date)
-            .flatMap { oddsResponse -> AnyPublisher<[GameOdds], NetworkError> in
-                self.teamRepo.getTeams(
-                    withSchedules: true,
-                    withRosters: true,
-                    withTopPerformers: true,
-                    withTeamStats: true,
-                    statFilter: .averages
-                )
-                .map { teams in
-                    let teamsCollection = teams.reduce(into: [String: NbaTeam]()) { result, team in
-                        result[team.id] = team
-                    }
-                    return oddsResponse.compactMap { odds -> GameOdds? in
-                        guard let homeTeam = teamsCollection[odds.homeId],
-                              let awayTeam = teamsCollection[odds.awayId]
-                        else {
-                            return nil
-                        }
-                        return try? odds.map(homeTeam: homeTeam, awayTeam: awayTeam)
-                    }
-                }
-                .eraseToAnyPublisher()
+    public func execute(date: Date) async throws -> [GameOdds] {
+        do {
+            let odds = try await self.matchUpRepo.getOdds(date: date)
+            let teams = try await self.teamRepo.getTeams(
+                withSchedules: true,
+                withRosters: true,
+                withTopPerformers: true,
+                withTeamStats: true,
+                statFilter: .averages
+            )
+            let teamsCollection = teams.reduce(into: [String: NbaTeam]()) { result, team in
+                result[team.id] = team
             }
-            .eraseToAnyPublisher()
+            return odds.compactMap { odds -> GameOdds? in
+                guard let homeTeam = teamsCollection[odds.homeId],
+                      let awayTeam = teamsCollection[odds.awayId]
+                else {
+                    return nil
+                }
+                return try? odds.map(homeTeam: homeTeam, awayTeam: awayTeam)
+            }
+        } catch {
+            throw error
+        }
     }
     
 }

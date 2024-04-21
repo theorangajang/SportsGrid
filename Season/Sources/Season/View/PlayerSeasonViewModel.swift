@@ -39,16 +39,18 @@ final class PlayerSeasonViewModel: ObservableObject {
     init(year: Int, repo: SeasonRepository = SeasonRepositoryImpl()) {
         self.repo = repo
         self.year = year
-        getSeason()
+        Task {
+            await getSeason()            
+        }
     }
     
-    func getMoreSeasons(index: Int) {
+    func getMoreSeasons(index: Int) async {
         guard let itemsLoadedCount, let totalItemsAvailable else { return }
         
         if reachedThreshold(itemsLoaded: itemsLoadedCount, index: index)
             && moreItemsRemaining(itemsLoaded: itemsLoadedCount, totalItemsAvailable: totalItemsAvailable) {
             self.viewState.page += 1
-            getSeason()
+            await getSeason()
         }
     }
     
@@ -60,23 +62,21 @@ final class PlayerSeasonViewModel: ObservableObject {
         return itemsLoaded < totalItemsAvailable
     }
     
-    func getSeason() {
+    func getSeason() async {
         self.viewState.dataIsLoading = true
-        self.repo.getSeason(year: self.year, page: self.viewState.page)
-            .receive(on: DispatchQueue.main)
-            .sink(
-                receiveCompletion: { [weak self] completion in
-                    guard let strongSelf = self else { return }
-                    strongSelf.viewState.dataIsLoading = false
-                },
-                receiveValue: { [weak self] season in
-                    guard let strongSelf = self else { return }
-                    strongSelf.totalItemsAvailable = season.totalPlayers
-                    strongSelf.dataState.players.append(contentsOf: season.players)
-                    strongSelf.itemsLoadedCount = strongSelf.dataState.players.count
-                }
-            )
-            .store(in: &self.cancellables)
+        do {
+            let season = try await self.repo.getSeason(year: self.year, page: self.viewState.page)
+            self.dataState.players.append(contentsOf: season.players)
+            Task { @MainActor in
+                self.totalItemsAvailable = season.totalPlayers
+                self.itemsLoadedCount = self.dataState.players.count
+                self.viewState.dataIsLoading = false
+            }
+        } catch {
+            Task { @MainActor in
+                self.viewState.dataIsLoading = false
+            }
+        }
     }
     
 }

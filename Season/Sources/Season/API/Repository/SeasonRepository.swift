@@ -10,7 +10,7 @@ import Foundation
 
 protocol SeasonRepository {
     
-    func getSeason(year: Int, page: Int) -> AnyPublisher<Season, SeasonError>
+    func getSeason(year: Int, page: Int) async throws -> Season
     
 }
 
@@ -24,10 +24,13 @@ final class SeasonRepositoryImpl: SeasonRepository {
         self.api = api
     }
     
-    func getSeason(year: Int, page: Int) -> AnyPublisher<Season, SeasonError> {
-        return self.api.getSeason(year: year, page: page)
-            .map { $0.map() }
-            .eraseToAnyPublisher()
+    func getSeason(year: Int, page: Int) async throws -> Season {
+        do {
+            let response = try await self.api.getSeason(year: year, page: page)
+            return response.map()
+        } catch {
+            throw error
+        }
     }
     
 }

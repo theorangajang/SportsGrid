@@ -10,7 +10,7 @@ import Foundation
 
 public protocol APIHandler {
     
-    func perform<T: Decodable>(model: T.Type, from route: RouteProvider) -> AnyPublisher<T, Error>
+    func perform<T: Decodable>(model: T.Type, from route: RouteProvider) async throws -> T
     
 }
 
@@ -30,19 +30,28 @@ public final class APIManager: APIHandler {
         self.requestBuilder = requestBuilder
     }
     
-    public func perform<T: Decodable>(model: T.Type, from route: RouteProvider) -> AnyPublisher<T, Error> {
-        guard let request = try? buildRequest(from: route) else {
-            return Fail(error: NetworkError.invalidURL).eraseToAnyPublisher()
+    public  func perform<T: Decodable>(model: T.Type, from route: RouteProvider) async throws -> T {
+        let (data, response) = try await self.session.data(for: buildRequest(from: route))
+        do {
+            return try handleResponse(model: model, data: data, response: response)
+        } catch {
+            throw NetworkError.dataConversionFailure
         }
-        return self.session.dataTaskPublisher(for: request)
-            .tryMap { [weak self] (data, response) -> T in
-                guard let strongSelf = self else { throw NetworkError.dataConversionFailure }
-                return try strongSelf.handleResponse(data: data, response: response)
-            }
-            .eraseToAnyPublisher()
     }
+
+//    public func perform<T: Decodable>(model: T.Type, from route: RouteProvider) -> AnyPublisher<T, Error> {
+//        guard let request = try? buildRequest(from: route) else {
+//            return Fail(error: NetworkError.invalidURL).eraseToAnyPublisher()
+//        }
+//        return self.session.dataTaskPublisher(for: request)
+//            .tryMap { [weak self] (data, response) -> T in
+//                guard let strongSelf = self else { throw NetworkError.dataConversionFailure }
+//                return try strongSelf.handleResponse(data: data, response: response)
+//            }
+//            .eraseToAnyPublisher()
+//    }
     
-    private func handleResponse<T: Decodable>(data: Data, response: URLResponse) throws -> T {
+    private func handleResponse<T: Decodable>(model: T.Type, data: Data, response: URLResponse) throws -> T {
         guard let httpResponse = response as? HTTPURLResponse else {
             throw NetworkError.dataConversionFailure
         }
@@ -51,7 +60,7 @@ public final class APIManager: APIHandler {
             throw NetworkError.requestFailed(statusCode: httpResponse.statusCode)
         }
         do {
-            return try self.decoder.decode(T.self, from: data)
+            return try self.decoder.decode(model.self, from: data)
         } catch {
             throw NetworkError.invalidResponse
         }

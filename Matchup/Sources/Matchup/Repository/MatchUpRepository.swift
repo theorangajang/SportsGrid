@@ -11,7 +11,7 @@ import SGBase
 
 public protocol MatchUpRepository {
     
-    func getOdds(date: Date) -> AnyPublisher<[GameOddsResponse], NetworkError>
+    func getOdds(date: Date) async throws -> [GameOddsResponse]
     
 }
 
@@ -25,13 +25,15 @@ public struct MatchUpRepositoryImpl: MatchUpRepository {
         self.api = api
     }
     
-    public func getOdds(date: Date) -> AnyPublisher<[GameOddsResponse], NetworkError> {
-        let formatDate = DateFormat
-            .toString(from: date, format: .YYYYMMDD)
-            .removeSpecialCharacters()
-        return self.api.getOdds(date: formatDate)
-            .mapError { _ in NetworkError.dataConversionFailure }
-            .eraseToAnyPublisher()
+    public func getOdds(date: Date) async throws -> [GameOddsResponse] {
+        do {
+            let formatDate = DateFormat
+                .toString(from: date, format: .YYYYMMDD)
+                .removeSpecialCharacters()
+            return try await self.api.getOdds(date: formatDate)
+        } catch {
+            throw NetworkError.dataConversionFailure
+        }
     }
     
 }

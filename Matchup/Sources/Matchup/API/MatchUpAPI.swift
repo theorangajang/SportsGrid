@@ -18,11 +18,14 @@ public final class MatchUpAPI {
         self.apiHandler = apiHandler
     }
     
-    func getOdds(date: String) -> AnyPublisher<[GameOddsResponse], Error> {
-        let router = MatchUpRouter.odds(date: date)
-        return self.apiHandler.perform(model: GameOddsBodyResponse.self, from: router)
-            .map { $0.gameOdds }
-            .eraseToAnyPublisher()
+    func getOdds(date: String) async throws -> [GameOddsResponse] {
+        do {
+            let router = MatchUpRouter.odds(date: date)
+            let response = try await self.apiHandler.perform(model: GameOddsBodyResponse.self, from: router)
+            return response.gameOdds
+        } catch {
+            throw error
+        }
     }
     
 }
