@@ -20,7 +20,7 @@ public struct MatchupList: View {
     public var body: some View {
         ScrollView {
             ForEach(self.viewModel.state.gameOdds, id: \.self) { games in
-                GameOddsRow(oddsItem: games)
+                GameOddsRow(gameOdds: games)
             }
         }
     }

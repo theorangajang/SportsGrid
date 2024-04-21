@@ -8,13 +8,20 @@
 import Combine
 import SGBase
 
+public enum StatFilter {
+    
+    case averages
+    
+}
+
 public protocol TeamRepository {
     
     func getTeams(
         withSchedules: Bool?,
         withRosters: Bool?,
         withTopPerformers: Bool?,
-        withTeamStats: Bool?
+        withTeamStats: Bool?,
+        statFilter: StatFilter?
     ) -> AnyPublisher<[NbaTeam], NetworkError>
     
 }
@@ -33,13 +40,15 @@ public struct TeamRepositoryImpl: TeamRepository {
         withSchedules: Bool?,
         withRosters: Bool?,
         withTopPerformers: Bool?,
-        withTeamStats: Bool?
+        withTeamStats: Bool?,
+        statFilter: StatFilter?
     ) -> AnyPublisher<[NbaTeam], NetworkError> {
         self.api.getTeams(
             withSchedules: withSchedules ?? false,
             withRosters: withRosters ?? false,
             withTopPerformers: withTopPerformers ?? false,
-            withTeamStats: withTeamStats ?? false
+            withTeamStats: withTeamStats ?? false,
+            statFilter: statFilter
         )
         .tryMap {
             try $0.map { team in

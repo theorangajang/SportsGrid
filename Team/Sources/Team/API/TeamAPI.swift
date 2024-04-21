@@ -22,17 +22,30 @@ final class TeamAPI {
         withSchedules: Bool,
         withRosters: Bool,
         withTopPerformers: Bool,
-        withTeamStats: Bool
+        withTeamStats: Bool,
+        statFilter: StatFilter?
     ) -> AnyPublisher<[NbaTeamResponse], Error> {
         let route = TeamRouter.getTeams(
             withSchedules: withSchedules,
             withRosters: withRosters,
             withTopPerformers: withTopPerformers,
-            withTeamStats: withTeamStats
+            withTeamStats: withTeamStats,
+            statFilter: statFilter?.request
         )
         return self.apiHandler.perform(model: NbaTeamBodyResponse.self, from: route)
             .map { $0.teams }
             .eraseToAnyPublisher()
+    }
+    
+}
+
+extension StatFilter {
+    
+    var request: String {
+        switch self {
+        case .averages:
+            "averages"
+        }
     }
     
 }

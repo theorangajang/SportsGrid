@@ -32,7 +32,8 @@ public struct GetOddsUseCase {
                     withSchedules: true,
                     withRosters: true,
                     withTopPerformers: true,
-                    withTeamStats: true
+                    withTeamStats: true,
+                    statFilter: .averages
                 )
                 .map { teams in
                     let teamsCollection = teams.reduce(into: [String: NbaTeam]()) { result, team in
