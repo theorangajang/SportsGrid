@@ -18,9 +18,11 @@ public struct MatchupList: View {
     }
     
     public var body: some View {
-        ScrollView {
-            ForEach(self.viewModel.state.gameOdds, id: \.self) { games in
-                GameOddsRow(gameOdds: games)
+        NavigationStack {
+            ScrollView {
+                ForEach(self.viewModel.state.gameOdds, id: \.self) { games in
+                    GameOddsRow(gameOdds: games)
+                }
             }
         }
         .task {

@@ -14,11 +14,11 @@ import ThemeKit
 struct GameOddsRow: View, Equatable {
     
     @Environment(\.colorScheme) var colorScheme
+    
     @State private var isGameSpreadExpanded: Bool = false
     @State private var isTopPerformersExpanded: Bool = false
     
     private static let books: [BookMaker] = BookMaker.allCases
-    private static let teamLogoSize: CGSize = CGSize(width: 50, height: 50)
     private static let headshotSize: CGSize = CGSize(width: 90, height: 90)
     private static let bookLogoSize: CGSize = CGSize(width: 30, height: 30)
     
@@ -34,24 +34,20 @@ struct GameOddsRow: View, Equatable {
     
     var body: some View {
         VStack(spacing: .zero) {
-            self.teamContent
+            NavigationLink(
+                destination: {
+                    MatchupDetails(gameOdds: self.gameOdds)
+                },
+                label: {
+                    TeamsTitle(awayTeam: self.gameOdds.awayTeam, homeTeam: self.gameOdds.homeTeam)
+                }
+            )
+            .buttonStyle(.plain)
             self.gameSpreadContent
             self.topPerformersContent
         }
         .clipShape(.rect(cornerRadius: 6))
         .padding(.horizontal, Padding.regular)
-    }
-    
-    @MainActor
-    private var teamContent: some View {
-        HStack(spacing: .zero) {
-            awayContent(name: self.gameOdds.awayTeam.nameAbv, link: self.gameOdds.awayTeam.espnPngLogo)
-            Color.white
-                .frame(width: 1)
-            homeContent(name: self.gameOdds.homeTeam.nameAbv, link: self.gameOdds.homeTeam.espnPngLogo)
-        }
-        .frame(height: 75)
-        .background(Theme.Colors.lightGrey)
     }
     
     private func collapsedContentTitle(for title: String) -> some View {
@@ -164,58 +160,6 @@ extension GameOddsRow {
     
 }
 
-// MARK: - Teams
-
-extension GameOddsRow {
-    
-    @MainActor
-    private func homeContent(name: String?, link: String?) -> some View {
-        HStack(spacing: Padding.small) {
-            Text(name ?? "")
-                .font(CustomFonts.titleLarge)
-                .foregroundStyle(Theme.Colors.creamWhite)
-                .frame(alignment: .trailing)
-            if let link {
-                logo(link: link)
-            }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
-    }
-    
-    @MainActor
-    private func awayContent(name: String?, link: String?) -> some View {
-        HStack(spacing: Padding.small) {
-            if let link {
-                logo(link: link)
-            }
-            Text(name ?? "")
-                .font(CustomFonts.titleLarge)
-                .foregroundStyle(Theme.Colors.creamWhite)
-                .frame(alignment: .leading)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-    }
-    
-    @MainActor
-    private func logo(link: String) -> some View {
-        LazyImage(url: URL(string: link)) { state in
-            if let image = state.image {
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            } else {
-                Color.gray
-            }
-        }
-        .frame(
-            width: Self.teamLogoSize.width,
-            height: Self.teamLogoSize.height,
-            alignment: .center
-        )
-    }
-    
-}
-
 // MARK: - Player Stats
 
 extension GameOddsRow {
@@ -264,34 +208,22 @@ extension GameOddsRow {
         }
     }
     
-    @ViewBuilder
     @MainActor
+    @ViewBuilder
     private func topPerformers(for team: NbaTeam) -> some View {
         VStack(spacing: .zero) {
-            if let playerId = team.topPerformers?.points?.playerID.first,
-               let player = team.roster[playerId] ?? getOtherTopPerformer(for: team, category: .points) {
-                headshot(link: player.espnHeadshot ?? player.nbaHeadshot ?? "")
-                if let name = player.longName {
-                    Text(name)
-                        .padding(.bottom, Padding.medium)
+            ForEach(PlayerStatCategory.allCases, id: \.self) { category in
+                let playerId = switch category {
+                case .points:
+                    team.topPerformers?.points?.playerID.first
+                case .assist:
+                    team.topPerformers?.assists?.playerID.first
+                case .rebounds:
+                    team.topPerformers?.rebounds?.playerID.first
                 }
-                playerStats(for: player)
-            }
-            if let playerId = team.topPerformers?.assists?.playerID.first,
-               let player = team.roster[playerId] ?? getOtherTopPerformer(for: team, category: .assist) {
-                headshot(link: player.espnHeadshot ?? player.nbaHeadshot ?? "")
-                if let name = player.longName {
-                    Text(name)
+                if let playerId, let player = team.roster[playerId] ?? getOtherTopPerformer(for: team, in: category) {
+                    playerInfo(for: player)
                 }
-                playerStats(for: player)
-            }
-            if let playerId = team.topPerformers?.rebounds?.playerID.first,
-               let player = team.roster[playerId] ?? getOtherTopPerformer(for: team, category: .rebounds) {
-                headshot(link: player.espnHeadshot ?? player.nbaHeadshot ?? "")
-                if let name = player.longName {
-                    Text(name)
-                }
-                playerStats(for: player)
             }
         }
         .padding(.horizontal, Padding.small)
@@ -317,7 +249,7 @@ extension GameOddsRow {
         )
     }
     
-    private func getOtherTopPerformer(for team: NbaTeam, category: PlayerStatCategory) -> PlayerBio? {
+    private func getOtherTopPerformer(for team: NbaTeam,in category: PlayerStatCategory) -> PlayerBio? {
         let sortedRoster = team.roster.values.sorted {
             switch category {
             case .points:
@@ -331,7 +263,19 @@ extension GameOddsRow {
         return sortedRoster.first
     }
     
-    /* 
+    @MainActor
+    @ViewBuilder
+    private func playerInfo(for player: PlayerBio) -> some View {
+        headshot(link: player.espnHeadshot ?? player.nbaHeadshot ?? "")
+        if let name = player.longName {
+            Text(name)
+                .lineLimit(1)
+                .padding(.bottom, Padding.medium)
+        }
+        playerStats(for: player)
+    }
+    
+    /*
      TODO:
      - Highlight the row that's for the top performer
      - animate bar slider
@@ -360,7 +304,7 @@ extension GameOddsRow {
     
 }
 
-enum PlayerStatCategory {
+enum PlayerStatCategory: CaseIterable {
     
     case points
     case assist
